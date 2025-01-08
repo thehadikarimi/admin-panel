@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1>گروه رزمی آناکوندا</h1>
+      <h1>پنل ادمین و کاربر</h1>
     </div>
   );
 }

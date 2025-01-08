@@ -53,7 +53,7 @@ const vazirmatn = localFont({
 });
 
 export const metadata = {
-  title: "گروه رزمی آناکوندا",
+  title: "پنل ادمین و کاربر",
 };
 
 export default function RootLayout({ children }) {
