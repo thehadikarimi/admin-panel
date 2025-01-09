@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import SVGIcon from "./SVGIcon";
+
 function TextField({
   component,
   parentCl,
@@ -14,9 +16,7 @@ function TextField({
   errors,
 }) {
   const textFieldChildren = () => {
-    if (component === "select") {
-      return "";
-    } else if (component === "textarea") {
+    if (component === "textarea") {
       return "";
     } else {
       if (type === "password") {
@@ -35,7 +35,7 @@ function TextField({
             <input
               type={inputType}
               placeholder=""
-              className="peer w-full border-none outline-none"
+              className="peer w-full border-none pl-7 outline-none"
               autoComplete="off"
               {...register(name, { required })}
             />
@@ -47,9 +47,13 @@ function TextField({
             <button
               type="button"
               onClick={handleShowPass}
-              className="absolute left-3 text-[.7em]"
+              className="absolute bottom-0 left-3 top-0 text-[.7em]"
             >
-              {inputType === "password" ? "نمایش" : "پنهان"}
+              {inputType === "password" ? (
+                <SVGIcon name="visibilityOn" className="size-4" />
+              ) : (
+                <SVGIcon name="visibilityOff" className="size-4" />
+              )}
             </button>
           </>
         );

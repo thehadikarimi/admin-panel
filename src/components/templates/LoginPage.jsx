@@ -9,7 +9,7 @@ function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="flex h-dvh w-full items-center justify-center bg-neutral-500">
+    <div className="flex min-h-dvh w-full items-center justify-center bg-neutral-500 py-8">
       <div className="container max-w-screen-sm">
         <div className="w-full rounded-lg bg-white p-5 shadow-md">
           <ul className="flex select-none items-center justify-around">

@@ -1,4 +1,8 @@
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
+
+import TanstakQueryProvider from "@/components/providers/TanstakQueryProvider";
+import Icons from "@/components/modules/Icons/Icons";
 
 import "./globals.css";
 
@@ -60,7 +64,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.className}>
       <body className="bg-white font-vazirmatn text-base font-normal text-dark-500 transition-colors duration-300 dark:bg-dark-500 dark:text-neutral-100">
-        {children}
+        <TanstakQueryProvider>
+          <Icons />
+          <div className="relative">{children}</div>
+          <div id="modal-root" />
+          <Toaster />
+        </TanstakQueryProvider>
       </body>
     </html>
   );
