@@ -9,19 +9,19 @@ function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="flex min-h-dvh w-full items-center justify-center bg-neutral-500 py-8">
+    <div className="flex min-h-dvh w-full items-center justify-center py-8">
       <div className="container max-w-screen-sm">
-        <div className="w-full rounded-lg bg-white p-5 shadow-md">
+        <div className="w-full rounded-2xl bg-white p-5 shadow-md dark:bg-white/10">
           <ul className="flex select-none items-center justify-around">
             <li
               onClick={() => setIsLogin(true)}
-              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-sm transition-all duration-300 md:text-base ${isLogin ? "border-primary text-primary" : ""}`}
+              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-sm md:text-base ${isLogin ? "border-primary text-primary" : ""}`}
             >
               ورود
             </li>
             <li
               onClick={() => setIsLogin(false)}
-              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-sm transition-all duration-300 md:text-base ${!isLogin ? "border-primary text-primary" : ""}`}
+              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-sm md:text-base ${!isLogin ? "border-primary text-primary" : ""}`}
             >
               ثبت نام
             </li>
