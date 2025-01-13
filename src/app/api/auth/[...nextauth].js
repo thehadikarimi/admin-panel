@@ -14,7 +14,7 @@ export const authOptions = {
 
         const isConnected = await DB_IsConnected();
         if (isConnected === "not-connected") {
-          throw new Error("خطا در هنگام اتطال به دیتابیس.");
+          throw new Error("خطا در هنگام اتصال به دیتابیس.");
         }
 
         if (!email || !password) {

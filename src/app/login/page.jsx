@@ -1,4 +1,4 @@
-import LoginPage from "@/components/templates/LoginPage";
+import LoginPage from "@/components/templates/LoginPage/LoginPage";
 
 export const metadata = {
   title: "ورود / ثبت نام | پنل ادمین و کاربر",

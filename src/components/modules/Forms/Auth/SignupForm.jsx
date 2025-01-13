@@ -1,32 +1,31 @@
 import { useForm } from "react-hook-form";
-import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 
 import TextField from "@/components/elements/TextField";
 
-function SignupForm() {
-  const formSchema = object({
-    name: string()
-      .required("لطفا نام و نام خانوادگی خود را وارد نمایید")
-      .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
-      .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
-    email: string()
-      .required("لطفا ایمیل خود را وارد نمایید")
-      .email("لطفا ایمیل معتبر وارد نمایید"),
-    password: string()
-      .required("لطفا گذرواژه خود را وارد نمایید")
-      .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
-      .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
-  }).required();
+import { useSignup } from "@/services/mutations";
+import { signupformSchema } from "@/schema/Yup";
 
+function SignupForm({ setIsLogin }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
+  } = useForm({ resolver: yupResolver(signupformSchema) });
 
-  const submitHandler = (data) => {
-    console.log(data);
+  const { mutate, isPending } = useSignup();
+
+  const submitHandler = async (data) => {
+    mutate(data, {
+      onSuccess: (data) => {
+        toast.success(data.data.message);
+        setIsLogin(true);
+      },
+      onError: (error) => {
+        toast.error(error.data.message || "خطا در برقراری ارتباط");
+      },
+    });
   };
 
   return (
@@ -38,6 +37,7 @@ function SignupForm() {
             name="name"
             title="نام و نام خانوادگی"
             labelCl="text-neutral-700"
+            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -46,6 +46,7 @@ function SignupForm() {
             name="email"
             title="ایمیل"
             labelCl="text-neutral-700"
+            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -55,12 +56,14 @@ function SignupForm() {
             title="گذرواژه"
             type="password"
             labelCl="text-neutral-700"
+            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
           />
         </div>
         <button
+          disabled={isPending}
           type="submit"
           className="mt-8 flex w-full items-center justify-center rounded-md bg-primary py-3 text-white"
         >

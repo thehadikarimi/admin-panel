@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import LoginForm from "../modules/Forms/Auth/LoginForm";
-import SignupForm from "../modules/Forms/Auth/SignupForm";
+import LoginForm from "../../modules/Forms/Auth/LoginForm";
+import SignupForm from "../../modules/Forms/Auth/SignupForm";
 
 function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -27,7 +27,7 @@ function LoginPage() {
             </li>
           </ul>
           <div className="w-full pb-4 pt-8">
-            {isLogin ? <LoginForm /> : <SignupForm />}
+            {isLogin ? <LoginForm /> : <SignupForm setIsLogin={setIsLogin} />}
           </div>
         </div>
       </div>

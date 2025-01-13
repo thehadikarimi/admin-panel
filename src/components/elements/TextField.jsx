@@ -37,8 +37,7 @@ function TextField({
             <input
               type={inputType}
               placeholder=""
-              className={fieldClassName + " pl-7"}
-              autoComplete="off"
+              className={"pl-7 " + fieldClassName}
               {...register(name, { required })}
             />
             <label className={labelClassName}>{title}</label>
@@ -68,7 +67,6 @@ function TextField({
               type={type}
               placeholder=""
               className={fieldClassName}
-              autoComplete="off"
               {...register(name, { required })}
             />
             <label className={labelClassName}>{title}</label>
