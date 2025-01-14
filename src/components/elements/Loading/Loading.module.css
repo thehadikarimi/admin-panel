@@ -1,0 +1,122 @@
+.circle1 {
+  -webkit-animation: AnimationCircle1 1.2s linear infinite normal forwards;
+  animation: AnimationCircle1 1.2s linear infinite normal forwards;
+}
+
+.circle2 {
+  -webkit-animation: AnimationCircle2 1.2s linear infinite normal forwards;
+  animation: AnimationCircle2 1.2s linear infinite normal forwards;
+}
+
+.circle3 {
+  -webkit-animation: AnimationCircle3 1.2s linear infinite normal forwards;
+  animation: AnimationCircle3 1.2s linear infinite normal forwards;
+}
+
+@-webkit-keyframes AnimationCircle1 {
+  0% {
+    opacity: 0.9;
+  }
+
+  33.333333% {
+    opacity: 0.6;
+  }
+
+  66.666667% {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes AnimationCircle1 {
+  0% {
+    opacity: 0.9;
+  }
+
+  33.333333% {
+    opacity: 0.6;
+  }
+
+  66.666667% {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+@-webkit-keyframes AnimationCircle2 {
+  0% {
+    opacity: 0.6;
+  }
+
+  33.333333% {
+    opacity: 0.3;
+  }
+
+  66.666667% {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes AnimationCircle2 {
+  0% {
+    opacity: 0.6;
+  }
+
+  33.333333% {
+    opacity: 0.3;
+  }
+
+  66.666667% {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0.6;
+  }
+}
+
+@-webkit-keyframes AnimationCircle3 {
+  0% {
+    opacity: 0.3;
+  }
+
+  33.333333% {
+    opacity: 0.9;
+  }
+
+  66.666667% {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 0.3;
+  }
+}
+
+@keyframes AnimationCircle3 {
+  0% {
+    opacity: 0.3;
+  }
+
+  33.333333% {
+    opacity: 0.9;
+  }
+
+  66.666667% {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 0.3;
+  }
+}
