@@ -30,7 +30,7 @@ export const authOptions = {
 
         if (!isValid)
           throw new Error(
-            "گذرواژه اشتباه است، لطفا گذرواژه صحیح را وارد کنید.",
+            "ایمیل یا گذرواژه اشتباه است، لطفا ایمیل و گذرواژه معتبر وارد کنید.",
           );
 
         return { email };
@@ -39,4 +39,6 @@ export const authOptions = {
   ],
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };

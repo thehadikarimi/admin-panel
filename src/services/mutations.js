@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { signIn } from "next-auth/react";
 
 import api from "@/config/axios";
 
@@ -8,4 +9,11 @@ const useSignup = () => {
   return useMutation({ mutationFn });
 };
 
-export { useSignup };
+const useLogin = () => {
+  const mutationFn = (data) =>
+    signIn("credentials", { ...data, redirect: false });
+
+  return useMutation({ mutationFn });
+};
+
+export { useSignup, useLogin };

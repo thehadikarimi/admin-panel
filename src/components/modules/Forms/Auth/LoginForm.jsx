@@ -1,28 +1,37 @@
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
 
 import TextField from "@/components/elements/TextField";
 
-function LoginForm() {
-  const formSchema = object({
-    email: string()
-      .required("لطفا ایمیل خود را وارد نمایید")
-      .email("لطفا ایمیل معتبر وارد نمایید"),
-    password: string()
-      .required("لطفا گذرواژه خود را وارد نمایید")
-      .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
-      .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
-  }).required();
+import { useLogin } from "@/services/mutations";
+import { loginformSchema } from "@/schema/Yup";
 
+function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
+  } = useForm({ resolver: yupResolver(loginformSchema) });
+
+  const { mutate, isPending } = useLogin();
+  const router = useRouter();
 
   const submitHandler = (data) => {
-    console.log(data);
+    mutate(data, {
+      onSuccess: (data) => {
+        if (data.status === 200) {
+          toast.success("با موفقیت وارد حساب کاربری خود شدید.");
+          router.push("/");
+        } else {
+          toast.error(data.error || "خطا در برقراری ارتباط");
+        }
+      },
+      onError: (error) => {
+        toast.error("خطا در برقراری ارتباط");
+      },
+    });
   };
 
   return (
@@ -34,6 +43,7 @@ function LoginForm() {
             name="email"
             title="ایمیل"
             labelCl="text-neutral-700"
+            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -43,12 +53,14 @@ function LoginForm() {
             title="گذرواژه"
             type="password"
             labelCl="text-neutral-700"
+            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
           />
         </div>
         <button
+          disabled={isPending}
           type="submit"
           className="mt-8 flex w-full items-center justify-center rounded-md bg-primary py-3 text-white"
         >

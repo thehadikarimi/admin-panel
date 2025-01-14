@@ -16,7 +16,7 @@ function SignupForm({ setIsLogin }) {
 
   const { mutate, isPending } = useSignup();
 
-  const submitHandler = async (data) => {
+  const submitHandler = (data) => {
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);

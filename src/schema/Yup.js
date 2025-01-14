@@ -14,4 +14,14 @@ const signupformSchema = object({
     .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
 }).required();
 
-export { signupformSchema };
+const loginformSchema = object({
+  email: string()
+    .required("لطفا ایمیل خود را وارد نمایید")
+    .email("لطفا ایمیل معتبر وارد نمایید"),
+  password: string()
+    .required("لطفا گذرواژه خود را وارد نمایید")
+    .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
+    .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
+}).required();
+
+export { signupformSchema, loginformSchema };
