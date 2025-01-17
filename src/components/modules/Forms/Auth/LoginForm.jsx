@@ -24,7 +24,7 @@ function LoginForm() {
       onSuccess: (data) => {
         if (data.status === 200) {
           toast.success("با موفقیت وارد حساب کاربری خود شدید.");
-          router.push("/");
+          router.refresh();
         } else {
           toast.error(data.error || "خطا در برقراری ارتباط");
         }
