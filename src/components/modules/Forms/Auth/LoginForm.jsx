@@ -37,7 +37,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <h2 className="text-center font-bold">ورود به حساب</h2>
+      <h2 className="text-center font-bold">ورود به داشبورد نکست</h2>
       <div className="mt-8">
         <div className="flex flex-col gap-5">
           <TextField

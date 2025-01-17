@@ -11,7 +11,7 @@ function LoginPage() {
   return (
     <div className="flex min-h-dvh w-full items-center justify-center py-8">
       <div className="container max-w-screen-sm">
-        <div className="w-full rounded-2xl bg-white p-5 shadow-md dark:bg-white/10">
+        <div className="w-full rounded-2xl bg-white p-5 shadow-md transition-colors duration-300 dark:bg-dark-500">
           <ul className="flex select-none items-center justify-around">
             <li
               onClick={() => setIsLogin(true)}

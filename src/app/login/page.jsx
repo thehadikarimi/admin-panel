@@ -5,7 +5,7 @@ import LoginPage from "@/components/templates/LoginPage/LoginPage";
 import { useAuthentication } from "@/utils/auth";
 
 export const metadata = {
-  title: "ورود / ثبت نام | پنل ادمین و کاربر",
+  title: "ورود / ثبت نام | داشبورد نکست",
 };
 
 async function Page() {

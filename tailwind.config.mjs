@@ -9,9 +9,10 @@ export default {
   theme: {
     colors: {
       white: "#ffffff",
+      black: "#14151b",
       dark: {
-        500: "#14151b",
-        700: "#090B10",
+        500: "#122031",
+        700: "#020d1a",
       },
       success: "#2e7b32",
       error: "#d32f2f",

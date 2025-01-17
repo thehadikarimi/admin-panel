@@ -31,7 +31,7 @@ function SignupForm({ setIsLogin }) {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <h2 className="text-center font-bold">ثبت نام</h2>
+      <h2 className="text-center font-bold">ثبت نام در داشبورد نکست</h2>
       <div className="mt-8">
         <div className="flex flex-col gap-5">
           <TextField
