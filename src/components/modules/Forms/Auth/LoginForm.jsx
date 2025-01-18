@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
-import TextField from "@/components/elements/TextField/TextField";
-import Loading from "@/components/elements/Loading/Loading";
+import TextField from "@/components/elements/TextField";
+import Loading from "@/components/elements/Loading";
 
 import { useLogin } from "@/services/mutations";
 import { loginformSchema } from "@/schema/Yup";

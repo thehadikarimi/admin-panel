@@ -1,4 +1,4 @@
-import UserProfilePage from "@/components/templates/UserProfilePage/UserProfilePage";
+import UserProfilePage from "@/components/templates/UserPage";
 
 function Page() {
   return <UserProfilePage />;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import SVGIcon from "../SVGIcon/SVGIcon";
+import SVGIcon from "../SVGIcon";
 
 function TextField({
   component,

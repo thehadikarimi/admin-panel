@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import UserLayout from "@/components/layouts/UserLayout/UserLayout";
+import UserLayout from "@/components/layouts/UserLayout";
 
 import { useAuthentication } from "@/utils/auth";
 

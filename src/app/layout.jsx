@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 
 import TanstakQueryProvider from "@/components/providers/TanstakQueryProvider";
-import Icons from "@/components/modules/Icons/Icons";
+import Icons from "@/components/modules/Icons";
 
 import "./globals.css";
 

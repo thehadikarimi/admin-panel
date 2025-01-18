@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import LoginPage from "@/components/templates/LoginPage/LoginPage";
+import LoginPage from "@/components/templates/LoginPage";
 
 import { useAuthentication } from "@/utils/auth";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import SVGIcon from "@/components/elements/SVGIcon/SVGIcon";
+import SVGIcon from "@/components/elements/SVGIcon";
 import Image from "next/image";
 import { useState } from "react";
 

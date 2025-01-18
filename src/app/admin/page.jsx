@@ -1,4 +1,4 @@
-import AdminProfilePage from "@/components/templates/AdminProfilePage/AdminProfilePage";
+import AdminProfilePage from "@/components/templates/AdminPage";
 
 function Page() {
   return <AdminProfilePage />;
