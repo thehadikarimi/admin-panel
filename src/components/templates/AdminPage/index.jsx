@@ -1,7 +1,5 @@
-function AdminProfilePage() {
-  return (
-    <div>AdminProfilePage</div>
-  )
+function AdminPage() {
+  return <div>AdminPage</div>;
 }
 
-export default AdminProfilePage
+export default AdminPage;
