@@ -22,8 +22,10 @@ export default {
         200: "#f6f7f8",
         500: "#e4e7eb",
         700: "#9e9fb1",
+        900: "#5a5c7a",
       },
       overlay: "#00000066",
+      transparent: "transparent",
     },
     container: {
       center: true,

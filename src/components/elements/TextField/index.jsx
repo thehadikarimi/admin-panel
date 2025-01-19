@@ -4,9 +4,6 @@ import SVGIcon from "../SVGIcon";
 
 function TextField({
   component,
-  fieldCl = "",
-  labelCl = "",
-  messageCl = "",
   name,
   title,
   type = "text",
@@ -14,8 +11,10 @@ function TextField({
   required = false,
   errors,
 }) {
-  const fieldClassName = `peer w-full border-none bg-[transparent] outline-none ${fieldCl}`;
-  const labelClassName = `pointer-events-none absolute right-3 top-auto -translate-y-full border-x border-[transparent] text-[.7em] transition-all duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-[.85em] peer-focus:-translate-y-full peer-focus:text-[.7em] ${labelCl}`;
+  const fieldClassName =
+    "peer w-full border-none bg-transparent px-3 py-4 outline-none";
+  const labelClassName =
+    "pointer-events-none absolute bottom-full right-3 top-0 my-auto h-fit text-[.8em] text-neutral-700 transition-all peer-placeholder-shown:bottom-0 peer-placeholder-shown:text-[1em] peer-focus:bottom-full peer-focus:text-[.8em]";
 
   const textFieldChildren = () => {
     if (component === "textarea") {
@@ -37,8 +36,9 @@ function TextField({
             <input
               type={inputType}
               placeholder=""
-              className={"pl-7 " + fieldClassName}
-              {...register(name, { required })}
+              autoComplete="off"
+              className={"pl-10 " + fieldClassName}
+              {...(register ? register(name, { required }) : {})}
             />
             <label className={labelClassName}>{title}</label>
             <button
@@ -66,8 +66,9 @@ function TextField({
             <input
               type={type}
               placeholder=""
+              autoComplete="off"
               className={fieldClassName}
-              {...register(name, { required })}
+              {...(register ? register(name, { required }) : {})}
             />
             <label className={labelClassName}>{title}</label>
           </>
@@ -77,19 +78,17 @@ function TextField({
   };
 
   return (
-    <div className="flex-grow text-sm md:text-base">
-      <div className="relative p-3">
+    <div className="flex-grow">
+      <div className="relative text-sm lg:text-base">
         {textFieldChildren()}
-        <fieldset className="pointer-events-none absolute inset-[-10px_0px_0px] overflow-hidden rounded-md border border-neutral-500 px-2 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full">
-          <legend className="invisible float-none block w-auto max-w-full overflow-hidden whitespace-nowrap text-[.7em] transition-[max-width]">
+        <fieldset className="dark:border-neutral-900 pointer-events-none absolute inset-[-5px_0px_0px] overflow-hidden rounded-lg border border-neutral-500 px-2 transition-all duration-300 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full">
+          <legend className="invisible float-none block w-auto max-w-full overflow-hidden whitespace-nowrap text-[.8em] leading-3 transition-[max-width]">
             <span className="visible inline-block px-1 opacity-0">{title}</span>
           </legend>
         </fieldset>
       </div>
       {errors && errors[name] && (
-        <span
-          className={`mt-1 inline-block text-[.8em] text-error ${messageCl}`}
-        >
+        <span className="mt-1 inline-block text-[.8em] text-error">
           {errors[name].message}
         </span>
       )}

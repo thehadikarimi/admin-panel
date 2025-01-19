@@ -37,8 +37,6 @@ function SignupForm({ setIsLogin }) {
           <TextField
             name="name"
             title="نام و نام خانوادگی"
-            labelCl="text-neutral-700"
-            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -46,8 +44,6 @@ function SignupForm({ setIsLogin }) {
           <TextField
             name="email"
             title="ایمیل"
-            labelCl="text-neutral-700"
-            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -56,8 +52,6 @@ function SignupForm({ setIsLogin }) {
             name="password"
             title="گذرواژه"
             type="password"
-            labelCl="text-neutral-700"
-            fieldCl="text-sm"
             register={register}
             required={true}
             errors={errors}
@@ -66,7 +60,7 @@ function SignupForm({ setIsLogin }) {
         <button
           disabled={isPending}
           type="submit"
-          className="mt-8 flex w-full items-center justify-center rounded-md bg-primary py-3 text-white"
+          className="mt-5 flex w-full items-center justify-center rounded-lg bg-primary py-4 text-sm text-white lg:text-base"
         >
           {isPending ? <Loading className="fill-neutral-100" /> : "ثبت نام"}
         </button>
