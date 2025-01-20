@@ -15,7 +15,7 @@ function AdminLayout({ children }) {
     <div className="flex h-screen overflow-hidden">
       <Sidebar sidebarOpen={sidebarOpen} sidebarToggle={sidebarToggle} />
       <div className="flex-grow overflow-y-auto overflow-x-hidden">
-        <header className="sticky top-0 z-[1] w-full border-b border-white bg-white px-3 shadow-md transition-colors duration-300 lg:px-5 dark:border-neutral-700 dark:bg-dark-500">
+        <header className="sticky top-0 z-[1] w-full border-b border-white bg-white px-3 shadow-md transition-colors duration-300 lg:h-20 lg:px-5 dark:border-neutral-700 dark:bg-dark-500">
           {isMobile ? (
             <MobileHeader sidebarToggle={sidebarToggle} />
           ) : (

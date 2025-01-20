@@ -19,7 +19,7 @@ function MobileHeader({ sidebarToggle }) {
             width={40}
             height={40}
           />
-          <p className="text-nowrap font-bold">
+          <p className="text-nowrap font-bold text-black dark:text-neutral-100">
             داشبورد <span className="text-primary">نکست</span>
           </p>
         </div>
