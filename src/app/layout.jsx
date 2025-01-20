@@ -63,7 +63,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.className}>
-      <body className="bg-neutral-500 font-vazirmatn text-base font-normal text-black transition-colors duration-300 dark:bg-dark-700 dark:text-neutral-100">
+      <body className="bg-neutral-200 font-vazirmatn text-base font-normal text-black transition-colors duration-300 dark:bg-dark-700 dark:text-neutral-100">
         <TanstakQueryProvider>
           <Icons />
           <div className="relative">{children}</div>

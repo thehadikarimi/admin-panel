@@ -1,11 +1,12 @@
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 
-function Sidebar({ sidebarOpen, setSidebarOpen }) {
-  const [collapse, setCollapse] = useState(false);
+import useToggle from "@/hooks/useToggle";
+
+function Sidebar({ sidebarOpen, sidebarToggle }) {
+  const [collapse, collapseToggle] = useToggle();
 
   const menuItem = [
     { icon: "dashboard", label: "داشبورد", route: "/admin" },
@@ -15,14 +16,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   ];
 
   return (
-    <div>
+    <div className="border-neutral-500 lg:border-l dark:border-neutral-700">
       <aside
-        className={`absolute right-0 top-0 z-10 h-full w-64 bg-white px-5 shadow-md dark:bg-dark-500 ${collapse ? "lg:w-20" : "lg:w-64"} transition-all duration-300 lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none"}`}
+        className={`absolute right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md dark:bg-dark-500 ${collapse ? "lg:w-20" : "lg:w-64"} transition-all duration-300 lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none"}`}
       >
         <div className="relative flex h-20 items-center border-b border-neutral-500">
           <button
-            onClick={() => setCollapse(!collapse)}
-            className="absolute right-full mr-2 hidden rounded-full bg-white shadow-md outline-none lg:block dark:bg-dark-500"
+            onClick={collapseToggle}
+            className="absolute right-full mr-2 hidden rounded-full border border-neutral-500 bg-white outline-none lg:block dark:border-neutral-900 dark:bg-dark-500"
           >
             <SVGIcon
               name={collapse ? "chevronLeft" : "chevronRight"}
@@ -79,8 +80,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         </div>
       </aside>
       <div
-        onClick={() => setSidebarOpen(false)}
-        className={`fixed inset-0 left-0 top-0 bg-black/30 opacity-0 backdrop-blur-sm transition-all duration-300 lg:hidden ${sidebarOpen ? "visible opacity-100" : "invisible"}`}
+        onClick={() => sidebarToggle(false)}
+        className={`fixed inset-0 left-0 top-0 z-10 bg-black/30 opacity-0 backdrop-blur-sm transition-all duration-300 lg:hidden ${sidebarOpen ? "visible opacity-100" : "invisible"}`}
       ></div>
     </div>
   );
