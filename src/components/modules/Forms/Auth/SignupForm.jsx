@@ -31,7 +31,9 @@ function SignupForm({ setIsLogin }) {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <h2 className="text-center font-bold">ثبت نام در داشبورد نکست</h2>
+      <h2 className="text-center font-bold text-black dark:text-neutral-100">
+        ثبت نام در داشبورد نکست
+      </h2>
       <div className="mt-8">
         <div className="flex flex-col gap-5">
           <TextField
@@ -60,7 +62,7 @@ function SignupForm({ setIsLogin }) {
         <button
           disabled={isPending}
           type="submit"
-          className="mt-5 flex w-full items-center justify-center rounded-lg bg-primary py-4 text-sm text-white lg:text-base"
+          className="mt-5 flex w-full items-center justify-center rounded-lg bg-primary py-3.5 text-sm leading-6 text-white lg:py-4 lg:text-base"
         >
           {isPending ? <Loading className="fill-neutral-100" /> : "ثبت نام"}
         </button>

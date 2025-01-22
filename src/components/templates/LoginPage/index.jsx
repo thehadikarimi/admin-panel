@@ -15,13 +15,13 @@ function LoginPage() {
           <ul className="flex select-none items-center justify-around">
             <li
               onClick={() => setIsLogin(true)}
-              className={`dark:border-neutral-900 w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-base transition-[border] duration-300 ${isLogin ? "!border-primary text-primary" : ""}`}
+              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-base text-black transition-[border] duration-300 dark:border-neutral-900 dark:text-neutral-100 ${isLogin ? "!border-primary !text-primary" : ""}`}
             >
               ورود
             </li>
             <li
               onClick={() => setIsLogin(false)}
-              className={`dark:border-neutral-900 w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-base transition-[border] duration-300 ${!isLogin ? "!border-primary text-primary" : ""}`}
+              className={`w-full cursor-pointer border-b-2 border-neutral-500 p-4 text-center text-base text-black transition-[border] duration-300 dark:border-neutral-900 dark:text-neutral-100 ${!isLogin ? "!border-primary !text-primary" : ""}`}
             >
               ثبت نام
             </li>

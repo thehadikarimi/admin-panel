@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { cookies } from "next/headers";
 import { Toaster } from "react-hot-toast";
 
 import TanstakQueryProvider from "@/components/providers/TanstakQueryProvider";
@@ -60,9 +61,14 @@ export const metadata = {
   title: "داشبورد نکست",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const cookie = await cookies();
+  const colorMode = cookie.get("color-theme")?.value;
+  const className =
+    colorMode === "dark" ? `${vazirmatn.className} dark` : vazirmatn.className;
+
   return (
-    <html lang="fa" dir="rtl" className={vazirmatn.className}>
+    <html lang="fa" dir="rtl" className={className}>
       <body className="bg-neutral-200 font-vazirmatn text-base font-normal text-black transition-colors duration-300 dark:bg-dark-700 dark:text-neutral-100">
         <TanstakQueryProvider>
           <Icons />

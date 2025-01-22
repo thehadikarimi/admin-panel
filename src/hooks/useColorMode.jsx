@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 import useLocalStorage from "./useLocalStorage";
 
@@ -6,9 +7,11 @@ const useColorMode = () => {
   const [colorMode, setColorMode] = useLocalStorage("color-theme", "light");
 
   useEffect(() => {
-    const bodyClass = window.document.body.classList;
+    const htmlClass = window.document.documentElement.classList;
 
-    colorMode === "dark" ? bodyClass.add("dark") : bodyClass.remove("dark");
+    colorMode === "dark" ? htmlClass.add("dark") : htmlClass.remove("dark");
+
+    Cookies.set("color-theme", colorMode);
   }, [colorMode]);
 
   return [colorMode, setColorMode];
