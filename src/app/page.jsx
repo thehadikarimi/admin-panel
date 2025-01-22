@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 
-import { useAuthentication } from "@/utils/auth";
+import useSessionStatus from "@/hooks/useSessionStatus";
 
 export default async function Home() {
-  const { status, role } = await useAuthentication();
+  const { status, role } = await useSessionStatus();
 
   if (status === "unauthenticated") redirect("/login");
 

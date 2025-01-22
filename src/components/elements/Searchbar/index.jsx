@@ -2,7 +2,7 @@ import SVGIcon from "../SVGIcon";
 
 function Searchbar() {
   return (
-    <div className="relative w-full lg:max-w-screen-sm">
+    <div className="relative flex-grow lg:max-w-screen-sm">
       <input
         type="text"
         placeholder="جست و جو"

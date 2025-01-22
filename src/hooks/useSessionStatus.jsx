@@ -2,10 +2,10 @@ import { getServerSession } from "next-auth";
 
 import User from "@/models/User";
 
-import { DB_IsConnected } from "./DB";
+import { DB_IsConnected } from "@/utils/DB";
 
 // use this function on server-side page.js or nested layout.js
-const useAuthentication = async () => {
+async function useSessionStatus() {
   const isConnected = await DB_IsConnected();
 
   if (isConnected === "not-connected") {
@@ -24,6 +24,6 @@ const useAuthentication = async () => {
   }
 
   return { status: "unauthenticated", role: null };
-};
+}
 
-export { useAuthentication };
+export default useSessionStatus;

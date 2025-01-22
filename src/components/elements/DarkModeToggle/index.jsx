@@ -1,13 +1,21 @@
 import SVGIcon from "../SVGIcon";
 
+import useDOMReady from "@/hooks/useDOMReady";
 import useColorMode from "@/hooks/useColorMode";
 
 function DarkModeToggle() {
+  const DOMReady = useDOMReady();
   const [colorMode, setColorMode] = useColorMode();
+
+  if (!DOMReady) {
+    return (
+      <div className="h-10 w-[84px] animate-pulse rounded-full bg-neutral-500 lg:h-12 lg:w-24 dark:bg-dark-700"></div>
+    );
+  }
 
   return (
     <div
-      onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
+      onClick={() => setColorMode(colorMode === "dark" ? "light" : "dark")}
       className="relative flex cursor-pointer items-center gap-3 rounded-full bg-neutral-500 p-1 transition-colors duration-300 lg:p-1.5 dark:bg-dark-700"
     >
       <div

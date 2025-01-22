@@ -10,7 +10,6 @@ import useScroll from "@/hooks/useScroll";
 
 function AdminLayout({ children }) {
   const [sidebarOpen, sidebarToggle] = useToggle();
-
   const scrollEleRef = useRef(null);
   const scroll = useScroll(scrollEleRef);
 
@@ -22,7 +21,7 @@ function AdminLayout({ children }) {
         className="flex-grow overflow-y-auto overflow-x-hidden"
       >
         <Header scroll={scroll} sidebarToggle={sidebarToggle} />
-        <main className="min-h-[2000px]">
+        <main>
           <div className="container max-w-screen-2xl lg:px-5">{children}</div>
         </main>
       </div>
