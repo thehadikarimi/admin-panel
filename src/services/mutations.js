@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import api from "@/config/axios";
 
 const useSignup = () => {
-  const mutationFn = (data) => api.post("/api/auth/signup", data);
+  const mutationFn = (data) => api.post("/auth/signup", data);
 
   return useMutation({ mutationFn });
 };

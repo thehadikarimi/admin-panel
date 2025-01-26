@@ -1,20 +1,22 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 import Searchbar from "@/components/elements/Searchbar";
 import DarkModeToggle from "@/components/elements/DarkModeToggle";
+import ProfileDropdown from "@/components/modules/ProfileDropdown";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
+import useToggle from "@/hooks/useToggle";
 
 function Header({ scroll, sidebarToggle }) {
   const isMobile = useMediaQuery("(max-width: 1023.98px)");
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, collapseToggle] = useToggle(false);
 
   useEffect(() => {
-    if (scroll > 119) setCollapse(true);
+    if (scroll > 119) collapseToggle(true);
 
-    if (scroll < 39) setCollapse(false);
+    if (scroll < 39) collapseToggle(false);
   }, [scroll]);
 
   return (
@@ -38,9 +40,7 @@ function Header({ scroll, sidebarToggle }) {
               داشبورد <span className="text-primary">نکست</span>
             </p>
           </div>
-          <button>
-            <SVGIcon name="person_0" className="size-6 dark:fill-neutral-500" />
-          </button>
+          <ProfileDropdown />
         </div>
         <div
           className={`flex ${isMobile && collapse ? "-translate-y-14" : "translate-y-0"} items-center justify-between gap-2 transition-transform duration-[330ms] lg:flex-grow lg:gap-8`}
