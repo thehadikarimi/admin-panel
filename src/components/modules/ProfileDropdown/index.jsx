@@ -10,7 +10,6 @@ import Image from "next/image";
 
 function ProfileDropdown() {
   const { isPending, data } = useGetProfile();
-  console.log(data?.data);
   const { role, name } = data?.data.user || {};
 
   if (isPending) {

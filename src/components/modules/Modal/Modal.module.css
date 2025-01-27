@@ -1,0 +1,52 @@
+.modalOverlay-enter {
+  opacity: 0;
+}
+
+.modalOverlay-enter-active {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modalOverlay-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 1023.98px) {
+  .modalContent-enter {
+    transform: translateY(100%);
+  }
+
+  .modalContent-enter-active {
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+  }
+
+  .modalContent-exit-active {
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modalContent-enter {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .modalContent-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .modalContent-exit-active {
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+}
