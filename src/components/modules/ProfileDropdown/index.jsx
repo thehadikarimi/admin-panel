@@ -1,4 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
+import toast from "react-hot-toast";
+
+import { useModal } from "@/context/ModalProvider";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 import {
@@ -8,11 +14,32 @@ import {
 } from "@/components/modules/Dropdown";
 
 import { useGetProfile } from "@/services/queries";
-import Image from "next/image";
 
 function ProfileDropdown() {
   const { isPending, data } = useGetProfile();
   const { role, name } = data?.data.user || {};
+  const router = useRouter();
+
+  const { openModal, closeModal } = useModal();
+
+  const signoutHandler = async () => {
+    try {
+      const data = await signOut({ redirect: false, callbackUrl: "/login" });
+      closeModal();
+      setTimeout(() => router.push(data.url), 1000);
+    } catch (error) {
+      toast.error("خطا در برقراری ارتباط");
+    }
+  };
+
+  const hadnleShowModal = () => {
+    openModal({
+      headText: "خروج از حساب کاربری",
+      bodyText: "آیا می خواهید از حساب کاربری خارج شوید؟",
+      buttonText: "خروج از حساب",
+      onAcceptHandler: signoutHandler,
+    });
+  };
 
   if (isPending) {
     return (
@@ -71,7 +98,7 @@ function ProfileDropdown() {
             </Link>
           </li>
           <li>
-            <button className="block w-full">
+            <button className="block w-full" onClick={hadnleShowModal}>
               <div className="flex items-center px-4 py-3">
                 <div className="pl-4">
                   <SVGIcon

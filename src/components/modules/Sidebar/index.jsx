@@ -1,5 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
+import toast from "react-hot-toast";
+
+import { useModal } from "@/context/ModalProvider";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 
@@ -7,6 +12,9 @@ import useToggle from "@/hooks/useToggle";
 
 function Sidebar({ sidebarOpen, sidebarToggle }) {
   const [collapse, collapseToggle] = useToggle();
+  const router = useRouter();
+
+  const { openModal, closeModal } = useModal();
 
   const menuItem = [
     { icon: "dashboard", label: "داشبورد", route: "/admin" },
@@ -14,6 +22,25 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
     { icon: "group", label: "کاربران", route: "/admin/users" },
     { icon: "sms", label: "تیکت ها", route: "/admin/tickets" },
   ];
+
+  const signoutHandler = async () => {
+    try {
+      const data = await signOut({ redirect: false, callbackUrl: "/login" });
+      closeModal();
+      setTimeout(() => router.push(data.url), 1000);
+    } catch (error) {
+      toast.error("خطا در برقراری ارتباط");
+    }
+  };
+
+  const hadnleShowModal = () => {
+    openModal({
+      headText: "خروج از حساب کاربری",
+      bodyText: "آیا می خواهید از حساب کاربری خارج شوید؟",
+      buttonText: "خروج از حساب",
+      onAcceptHandler: signoutHandler,
+    });
+  };
 
   return (
     <div className="z-[2] border-neutral-500 transition-colors duration-300 lg:relative lg:border-l dark:border-neutral-700">
@@ -66,7 +93,10 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
               </ul>
             </div>
             <div>
-              <button className="w-full text-nowrap p-2 text-right">
+              <button
+                className="w-full text-nowrap p-2 text-right"
+                onClick={hadnleShowModal}
+              >
                 <SVGIcon
                   name="logout"
                   className="inline-block size-6 fill-error"
