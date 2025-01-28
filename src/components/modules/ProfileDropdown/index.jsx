@@ -12,6 +12,7 @@ import {
   DropdownToggle,
   DropdownContent,
 } from "@/components/modules/Dropdown";
+import Skeleton from "@/components/elements/Skeleton";
 
 import { useGetProfile } from "@/services/queries";
 
@@ -42,9 +43,7 @@ function ProfileDropdown() {
   };
 
   if (isPending) {
-    return (
-      <div className="h-6 w-11 animate-pulse rounded-full bg-neutral-500 dark:bg-dark-700"></div>
-    );
+    return <Skeleton className="h-6 w-11 rounded-full" />;
   }
 
   return (

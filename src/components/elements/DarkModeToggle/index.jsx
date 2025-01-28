@@ -1,4 +1,5 @@
 import SVGIcon from "../SVGIcon";
+import Skeleton from "../Skeleton";
 
 import useDOMReady from "@/hooks/useDOMReady";
 import useColorMode from "@/hooks/useColorMode";
@@ -8,9 +9,7 @@ function DarkModeToggle() {
   const [colorMode, setColorMode] = useColorMode();
 
   if (!DOMReady) {
-    return (
-      <div className="h-10 w-[84px] animate-pulse rounded-full bg-neutral-500 lg:h-12 lg:w-24 dark:bg-dark-700"></div>
-    );
+    return <Skeleton className="h-10 w-[84px] rounded-full lg:h-12 lg:w-24" />;
   }
 
   return (
