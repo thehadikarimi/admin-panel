@@ -6,6 +6,7 @@ import TanstakQueryProvider from "@/components/providers/TanstakQueryProvider";
 import Icons from "@/components/modules/Icons";
 
 import "./globals.css";
+import ModalProvider from "@/context/ModalProvider";
 
 const vazirmatn = localFont({
   src: [
@@ -70,12 +71,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl" className={className}>
       <body className="overflow-hidden bg-neutral-200 font-vazirmatn text-base font-normal text-black transition-colors duration-300 dark:bg-dark-700 dark:text-neutral-100">
-        <TanstakQueryProvider>
-          <Icons />
-          <div className="relative">{children}</div>
-          <div id="modal-root" />
-          <Toaster />
-        </TanstakQueryProvider>
+        <ModalProvider>
+          <TanstakQueryProvider>
+            <Icons />
+            <div className="relative">{children}</div>
+            <div id="modal-root" />
+            <Toaster />
+          </TanstakQueryProvider>
+        </ModalProvider>
       </body>
     </html>
   );
