@@ -1,9 +1,11 @@
 import Link from "next/link";
 
 import SVGIcon from "@/components/elements/SVGIcon";
-import Dropdown from "@/components/modules/Dropdown";
-import DropdownToggle from "@/components/modules/Dropdown/DropdownToggle";
-import DropdownContent from "@/components/modules/Dropdown/DropdownContent";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownContent,
+} from "@/components/modules/Dropdown";
 
 import { useGetProfile } from "@/services/queries";
 import Image from "next/image";
