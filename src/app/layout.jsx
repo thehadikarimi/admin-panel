@@ -7,6 +7,7 @@ import Icons from "@/components/modules/Icons";
 
 import "./globals.css";
 import ModalProvider from "@/context/ModalProvider";
+import DefaultModal from "@/components/modules/Modal/DefaultModal";
 
 const vazirmatn = localFont({
   src: [
@@ -77,6 +78,7 @@ export default async function RootLayout({ children }) {
             <div className="relative">{children}</div>
             <div id="modal-root" />
             <Toaster />
+            <DefaultModal />
           </TanstakQueryProvider>
         </ModalProvider>
       </body>
