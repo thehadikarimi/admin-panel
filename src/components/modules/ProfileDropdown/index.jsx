@@ -50,8 +50,8 @@ function ProfileDropdown() {
     <Dropdown className="relative">
       <DropdownToggle className="group flex cursor-pointer items-center">
         <SVGIcon
-          name="chevronUp"
-          className="size-5 transition-transform duration-300 group-aria-hidden:rotate-180 dark:fill-neutral-500"
+          name="chevronDown"
+          className="size-5 transition-transform duration-300 group-aria-expanded:-rotate-180 dark:fill-neutral-500"
         />
         <SVGIcon name="person_0" className="size-6 dark:fill-neutral-500" />
       </DropdownToggle>

@@ -8,39 +8,42 @@ import ClickOutside from "../ClickOutside";
 
 import useToggle from "@/hooks/useToggle";
 
+import { cn } from "@/utils/helper";
+
 import styles from "./DropdownContent.module.css";
 
-function Dropdown({ children, className, exceptionRef }) {
+function Dropdown(props) {
+  const { children, className } = props;
   const [state, stateToggle] = useToggle(false);
 
   return (
     <ClickOutside
       onClick={() => stateToggle(false)}
-      className={className}
-      exceptionRef={exceptionRef}
+      className={cn("relative", className)}
     >
-      {Children.map(children, (child) => {
-        if (child.type.name === "DropdownToggle") {
-          return cloneElement(child, { onClick: stateToggle, state });
-        }
-        if (child.type.name === "DropdownContent") {
-          return cloneElement(child, { state });
-        }
-        return child;
-      })}
+      {Children.map(children, (child) =>
+        cloneElement(child, { onClick: () => stateToggle(), state }),
+      )}
     </ClickOutside>
   );
 }
 
-function DropdownToggle({ children, onClick, state, className }) {
+function DropdownToggle(props) {
+  const { children, onClick, state, className } = props;
+
   return (
-    <div onClick={onClick} className={className} aria-hidden={!state}>
+    <button
+      onClick={onClick}
+      className={className}
+      aria-expanded={state}
+    >
       {children}
-    </div>
+    </button>
   );
 }
 
-function DropdownContent({ children, state, className }) {
+function DropdownContent(props) {
+  const { children, state, className } = props;
   const dropdownContentRef = useRef(null);
 
   const cssTransitionClassName = {
@@ -57,7 +60,10 @@ function DropdownContent({ children, state, className }) {
       unmountOnExit
       classNames={cssTransitionClassName}
     >
-      <div ref={dropdownContentRef} className={className} aria-hidden={!state}>
+      <div
+        ref={dropdownContentRef}
+        className={cn("absolute left-0 top-0", className)}
+      >
         {children}
       </div>
     </CSSTransition>
