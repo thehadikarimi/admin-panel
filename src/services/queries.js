@@ -9,4 +9,11 @@ const useGetProfile = () => {
   return useQuery({ queryKey, queryFn });
 };
 
-export { useGetProfile };
+const useGetUsers = () => {
+  const queryFn = () => api.get("/users");
+  const queryKey = ["users"];
+
+  return useQuery({ queryKey, queryFn });
+};
+
+export { useGetProfile, useGetUsers };
