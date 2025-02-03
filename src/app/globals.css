@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .c-container {
+    @apply w-full rounded-lg bg-white p-5 shadow-md transition-colors duration-300 dark:bg-dark-500;
+  }
+
+  .title {
+    @apply text-xl font-bold text-black lg:text-2xl dark:text-neutral-100;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -22,7 +22,9 @@ function AdminLayout({ children }) {
       >
         <Header scroll={scroll} sidebarToggle={sidebarToggle} />
         <main>
-          <div className="container max-w-screen-2xl lg:px-5">{children}</div>
+          <div className="container max-w-screen-2xl lg:px-5">
+            <div className="py-3 lg:py-5">{children}</div>
+          </div>
         </main>
       </div>
     </div>
