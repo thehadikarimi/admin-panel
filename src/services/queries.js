@@ -13,7 +13,7 @@ const useGetUsers = () => {
   const queryFn = () => api.get("/users");
   const queryKey = ["users"];
 
-  return useQuery({ queryKey, queryFn });
+  return useQuery({ queryKey, queryFn, refetchOnMount: true });
 };
 
 export { useGetProfile, useGetUsers };

@@ -50,3 +50,48 @@ export async function GET() {
     { status: 200 },
   );
 }
+
+export async function DELETE(request) {
+  const isConnected = await DB_IsConnected();
+  if (isConnected === "not-connected") {
+    return Response.json(
+      {
+        status: 500,
+        data: { message: "خطا در هنگام اتصال به دیتابیس." },
+      },
+      { status: 500 },
+    );
+  }
+
+  const session = await getServerSession();
+
+  if (!session) {
+    return Response.json(
+      { status: 401, data: { message: "لطفا وارد حساب کاربری خود شوید." } },
+      { status: 401 },
+    );
+  }
+
+  const body = await request.json();
+  const { _id } = body;
+
+  if (!_id) {
+    return Response.json(
+      {
+        status: 422,
+        data: { _id, message: "لطفا آیدی کاربر را به درستی وارد نمایید." },
+      },
+      { status: 422 },
+    );
+  }
+
+  await User.deleteOne({ _id });
+
+  return Response.json(
+    {
+      status: 200,
+      data: { _id, message: "کاربر با موفقیت حذف شد." },
+    },
+    { status: 200 },
+  );
+}

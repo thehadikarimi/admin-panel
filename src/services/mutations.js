@@ -16,4 +16,10 @@ const useLogin = () => {
   return useMutation({ mutationFn });
 };
 
-export { useSignup, useLogin };
+const useDeleteUser = () => {
+  const mutationFn = (id) => api.delete("/users", { data: { _id: id } });
+
+  return useMutation({ mutationFn });
+};
+
+export { useSignup, useLogin, useDeleteUser };

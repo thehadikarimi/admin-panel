@@ -30,10 +30,16 @@ function UsersTable({ qty = undefined }) {
                 <Loading />
               </td>
             </tr>
-          ) : (
+          ) : data?.data.users.length ? (
             data?.data.users
               .slice(0, qty)
-              .map((user) => <UserTableRow key={user._id} data={user} />)
+              .map((user) => <UserTableRow key={user._id} userData={user} />)
+          ) : (
+            <tr className="relative h-14 *:px-3 lg:h-16">
+              <td className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 text-neutral-900 dark:text-neutral-500">
+                هیچ کاربری یافت نشد.
+              </td>
+            </tr>
           )}
         </tbody>
       </table>
