@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import SVGIcon from "../SVGIcon";
 
+import { cn } from "@/utils/helper";
+
 function TextField({
   component,
   name,
@@ -10,6 +12,7 @@ function TextField({
   register,
   required = false,
   errors,
+  containerCl = "",
 }) {
   const fieldClassName =
     "peer w-full border-none bg-transparent px-3 py-4 outline-none";
@@ -79,9 +82,9 @@ function TextField({
 
   return (
     <div className="flex-grow">
-      <div className="relative text-sm lg:text-base">
+      <div className={cn("relative text-sm lg:text-base", containerCl)}>
         {textFieldChildren()}
-        <fieldset className="dark:border-neutral-900 pointer-events-none absolute inset-[-5px_0px_0px] overflow-hidden rounded-lg border border-neutral-500 px-2 transition-all duration-300 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full">
+        <fieldset className="pointer-events-none absolute inset-[-5px_0px_0px] overflow-hidden rounded-lg border border-neutral-500 px-2 transition-all duration-300 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full dark:border-neutral-900">
           <legend className="invisible float-none block w-auto max-w-full overflow-hidden whitespace-nowrap text-[.8em] leading-3 transition-[max-width]">
             <span className="visible inline-block px-1 opacity-0">{title}</span>
           </legend>

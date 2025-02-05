@@ -16,7 +16,7 @@ export default {
       },
       success: "#2e7b32",
       error: "#d32f2f",
-      primary: "#8BCC10",
+      primary: "#5750f1",
       neutral: {
         100: "#f1f2f4",
         200: "#f6f7f8",
