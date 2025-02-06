@@ -22,4 +22,10 @@ const useDeleteUser = () => {
   return useMutation({ mutationFn });
 };
 
-export { useSignup, useLogin, useDeleteUser };
+const useAddUser = () => {
+  const mutationFn = (data) => api.post("/users", data);
+
+  return useMutation({ mutationFn });
+};
+
+export { useSignup, useLogin, useDeleteUser, useAddUser };

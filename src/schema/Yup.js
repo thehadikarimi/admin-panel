@@ -24,4 +24,21 @@ const loginformSchema = object({
     .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
 }).required();
 
-export { signupformSchema, loginformSchema };
+const addUserFormSchema = object().shape({
+  name: string()
+    .required("لطفا نام و نام خانوادگی خود را وارد نمایید")
+    .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
+    .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
+  email: string().email("لطفا ایمیل معتبر وارد نمایید"),
+  password: string().when("email", {
+    is: (email) => email.length > 0,
+    then: () =>
+      string()
+        .required("لطفا برای افزودن کاربر با ایمیل، گذرواژه را نیز وارد نمایید")
+        .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
+        .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
+    otherwise: () => string(),
+  }),
+});
+
+export { signupformSchema, loginformSchema, addUserFormSchema };

@@ -6,14 +6,8 @@ const userSchema = new Schema({
     enum: ["USER", "ADMIN"],
     default: "USER",
   },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  email: String,
+  password: String,
   name: String,
   phoneNumber: String,
   birthDate: String,

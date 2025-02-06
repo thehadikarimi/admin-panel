@@ -1,22 +1,59 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+
 import TextField from "@/components/elements/TextField";
+import Loading from "@/components/elements/Loading";
+
+import { addUserFormSchema } from "@/schema/Yup";
+import { useAddUser } from "@/services/mutations";
 
 function AddUserForm({ stateToggle }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(addUserFormSchema) });
+
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useAddUser();
+
+  const submitHandler = (data) => {
+    mutate(data, {
+      onSuccess: (data) => {
+        toast.success(data.data.message);
+        stateToggle(false);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+      },
+      onError: (error) => {
+        toast.error(error.data.message || "خطا در برقراری ارتباط");
+      },
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(submitHandler)}>
       <div className="mb-7 mt-2 flex flex-col gap-4 lg:gap-5">
         <TextField
           name="name"
           title="نام و نام خانوادگی"
+          register={register}
+          errors={errors}
           containerCl="text-xs lg:text-sm"
         />
         <TextField
           name="email"
           title="ایمیل (اختیاری)"
+          register={register}
+          errors={errors}
           containerCl="text-xs lg:text-sm"
         />
         <TextField
           name="password"
           title="گذرواژه (اختیاری)"
+          register={register}
+          errors={errors}
           containerCl="text-xs lg:text-sm"
         />
       </div>
@@ -28,8 +65,11 @@ function AddUserForm({ stateToggle }) {
         >
           انصراف
         </button>
-        <button className="flex-1 rounded-lg border border-primary bg-primary p-3 text-xs text-white lg:flex-initial">
-          افزودن کاربر
+        <button
+          disabled={isPending}
+          className="flex flex-1 items-center justify-center rounded-lg border border-primary bg-primary px-3 text-xs text-white lg:flex-initial"
+        >
+          {isPending ? <Loading /> : "افزودن کاربر"}
         </button>
       </div>
     </form>
