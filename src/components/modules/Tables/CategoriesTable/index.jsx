@@ -1,25 +1,20 @@
 "use client";
 
-import UserTableRow from "./UserTableRow";
 import Loading from "@/components/elements/Loading";
 
-import { useGetUsers } from "@/services/queries";
-import { curMonth } from "@/utils/helper";
+import { useGetCategories } from "@/services/queries";
 
-function UsersTable({ qty = undefined }) {
-  const { data, isPending } = useGetUsers();
+function CategoriesTable() {
+  const { data, isPending } = useGetCategories();
 
   return (
     <div className="mt-5">
       <table className="w-full table-fixed whitespace-nowrap text-sm lg:text-base">
         <thead className="h-14 bg-neutral-500 transition-colors duration-300 lg:h-16 dark:bg-neutral-900">
           <tr className="text-right text-neutral-900 *:px-3 dark:text-neutral-500">
-            <th className="rounded-tr-lg">نام و نام خانوادگی</th>
-            <th className="hidden sm:table-cell">شماره تلفن</th>
-            <th className="hidden xl:table-cell">دسته بندی</th>
-            <th className="hidden md:table-cell">
-              وضعیت پرداخت (ماه {curMonth("long")})
-            </th>
+            <th className="rounded-tr-lg">نام دسته بندی</th>
+            <th className="hidden lg:table-cell">اسلاگ دسته بندی</th>
+            <th className="hidden sm:table-cell">تعداد کاربران</th>
             <th className="rounded-tl-lg"></th>
           </tr>
         </thead>
@@ -30,14 +25,14 @@ function UsersTable({ qty = undefined }) {
                 <Loading />
               </td>
             </tr>
-          ) : data?.data.users.length ? (
-            data?.data.users
+          ) : data?.data.categories.length ? (
+            data?.data.categories
               .slice(0, qty)
-              .map((user) => <UserTableRow key={user._id} userData={user} />)
+              .map((category) => <tr>{category}</tr>)
           ) : (
             <tr className="relative h-14 *:px-3 lg:h-16">
               <td className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 text-neutral-900 dark:text-neutral-500">
-                هیچ کاربری یافت نشد.
+                هیچ دسته بندی یافت نشد.
               </td>
             </tr>
           )}
@@ -47,4 +42,4 @@ function UsersTable({ qty = undefined }) {
   );
 }
 
-export default UsersTable;
+export default CategoriesTable;

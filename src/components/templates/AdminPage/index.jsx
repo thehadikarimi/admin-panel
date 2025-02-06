@@ -10,7 +10,7 @@ function AdminPage() {
       <div className="c-container">
         <h2 className="title">لیست کاربران</h2>
         <UsersTable qty={4} />
-        <div className="mt-3 text-left">
+        <div className="mt-5 text-left">
           <Link
             href="/admin/users"
             className="inline-flex items-center text-sm text-primary"
@@ -23,7 +23,7 @@ function AdminPage() {
       <div className="c-container">
         <h2 className="title">لیست تیکت ها</h2>
         <TicketsTable />
-        <div className="mt-3 text-left">
+        <div className="mt-5 text-left">
           <Link
             href="/admin/tickets"
             className="inline-flex items-center text-sm text-primary"

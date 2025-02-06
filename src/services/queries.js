@@ -16,4 +16,11 @@ const useGetUsers = () => {
   return useQuery({ queryKey, queryFn, refetchOnMount: true });
 };
 
-export { useGetProfile, useGetUsers };
+const useGetCategories = () => {
+  const queryFn = () => api.get("/categories");
+  const queryKey = ["categories"];
+
+  return useQuery({ queryKey, queryFn, refetchOnMount: true });
+};
+
+export { useGetProfile, useGetUsers, useGetCategories };

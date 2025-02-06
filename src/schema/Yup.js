@@ -26,7 +26,7 @@ const loginformSchema = object({
 
 const addUserFormSchema = object().shape({
   name: string()
-    .required("لطفا نام و نام خانوادگی خود را وارد نمایید")
+    .required("لطفا نام و نام خانوادگی را وارد نمایید")
     .min(6, "حداقل باید 6 کاراکتر وارد نمایید")
     .max(32, "حداکثر باید 32 کاراکتر وارد نمایید"),
   email: string().email("لطفا ایمیل معتبر وارد نمایید"),
