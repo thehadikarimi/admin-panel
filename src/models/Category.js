@@ -5,11 +5,25 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
-  slug: {
-    type: String,
-    required: true,
+  description: String,
+  userQuantity: {
+    type: Number,
+    default: 0,
   },
-  userQuantity: Number,
+  createdAt: {
+    type: Date,
+    default: () => Date.now(),
+    immutable: true,
+  },
+  updatedAt: {
+    type: Date,
+    default: () => Date.now(),
+  },
+});
+
+categorySchema.pre("save", function (next) {
+  this.updatedAt = () => Date.now();
+  next();
 });
 
 const Category = models.Category || model("Category", categorySchema);

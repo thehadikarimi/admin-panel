@@ -69,7 +69,7 @@ function UserTableRow({ userData }) {
     <tr className="h-14 text-neutral-900 transition-colors duration-300 *:px-3 lg:h-16 dark:text-neutral-500">
       <td>
         <div className="flex flex-col">
-          <span>{userData.name}</span>
+          <span className="overflow-hidden text-ellipsis">{userData.name}</span>
           <span className="text-[.85em]">
             {userData.role === "ADMIN" ? "مدیر" : "کاربر"}
           </span>

@@ -40,12 +40,72 @@ export async function GET() {
   const filterCategoriesData = categories.map((category) => ({
     _id: category._id,
     name: category.name,
-    slug: category.slug,
+    description: category.description,
     userQuantity: category.userQuantity,
   }));
 
   return Response.json(
     { status: 200, data: { categories: filterCategoriesData } },
     { status: 200 },
+  );
+}
+
+export async function POST(request) {
+  const isConnected = await DB_IsConnected();
+  if (isConnected === "not-connected") {
+    return Response.json(
+      {
+        status: 500,
+        data: { message: "خطا در هنگام اتصال به دیتابیس." },
+      },
+      { status: 500 },
+    );
+  }
+
+  const session = await getServerSession();
+
+  if (!session) {
+    return Response.json(
+      { status: 401, data: { message: "لطفا وارد حساب کاربری خود شوید." } },
+      { status: 401 },
+    );
+  }
+
+  const body = await request.json();
+  const { name, description = "" } = body;
+
+  if (!name) {
+    return Response.json(
+      {
+        status: 422,
+        data: { message: "لطفا نام دسته بندی را وارد نمایید." },
+      },
+      { status: 422 },
+    );
+  }
+
+  const existingCategory = await Category.findOne({ name });
+
+  if (existingCategory) {
+    return Response.json(
+      {
+        status: 422,
+        data: {
+          message:
+            "دسته بندی با این نام وجود دارد، لطفا نام دیگری را وارد نمایید.",
+        },
+      },
+      { status: 422 },
+    );
+  }
+
+  await Category.create({ name, description, userQuantity: 0 });
+
+  return Response.json(
+    {
+      status: 201,
+      data: { message: "دسته بندی با موفقیت ایجاد شد." },
+    },
+    { status: 201 },
   );
 }

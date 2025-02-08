@@ -28,4 +28,10 @@ const useAddUser = () => {
   return useMutation({ mutationFn });
 };
 
-export { useSignup, useLogin, useDeleteUser, useAddUser };
+const useAddCategory = () => {
+  const mutationFn = (data) => api.post("/categories", data);
+
+  return useMutation({ mutationFn });
+};
+
+export { useSignup, useLogin, useDeleteUser, useAddUser, useAddCategory };
