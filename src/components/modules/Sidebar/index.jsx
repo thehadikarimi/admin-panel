@@ -57,17 +57,19 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
               className="size-6 dark:fill-neutral-100"
             />
           </button>
-          <div className="flex w-full items-center gap-3 overflow-hidden">
-            <Image
-              className="size-10 dark:invert"
-              src="/nextjs.svg"
-              alt="Next.js logo"
-              width={40}
-              height={40}
-            />
-            <h1 className="text-nowrap font-bold text-black dark:text-neutral-100">
-              داشبورد <span className="text-primary">نکست</span>
-            </h1>
+          <div className="w-full overflow-hidden">
+            <Link href="/admin" className="flex items-center gap-3">
+              <Image
+                className="size-10 dark:invert"
+                src="/nextjs.svg"
+                alt="Next.js logo"
+                width={40}
+                height={40}
+              />
+              <p className="text-nowrap font-bold text-black dark:text-neutral-100">
+                داشبورد <span className="text-primary">نکست</span>
+              </p>
+            </Link>
           </div>
         </div>
         <div className="h-[calc(100%_-_5rem)] py-3">

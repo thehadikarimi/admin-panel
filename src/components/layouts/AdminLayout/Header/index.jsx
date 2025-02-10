@@ -8,6 +8,7 @@ import ProfileDropdown from "@/components/modules/ProfileDropdown";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useToggle from "@/hooks/useToggle";
+import Link from "next/link";
 
 function Header({ scroll, sidebarToggle }) {
   const isMobile = useMediaQuery("(max-width: 1023.98px)");
@@ -28,17 +29,19 @@ function Header({ scroll, sidebarToggle }) {
           <button onClick={() => sidebarToggle(true)} className="lg:hidden">
             <SVGIcon name="menu" className="size-6 dark:fill-neutral-500" />
           </button>
-          <div className="flex items-center gap-3 lg:hidden">
-            <Image
-              className="size-10 dark:invert"
-              src="/nextjs.svg"
-              alt="Next.js logo"
-              width={40}
-              height={40}
-            />
-            <p className="text-nowrap font-bold text-black dark:text-neutral-100">
-              داشبورد <span className="text-primary">نکست</span>
-            </p>
+          <div className="lg:hidden">
+            <Link href="/admin" className="flex items-center gap-3">
+              <Image
+                className="size-10 dark:invert"
+                src="/nextjs.svg"
+                alt="Next.js logo"
+                width={40}
+                height={40}
+              />
+              <h1 className="text-nowrap font-bold text-black dark:text-neutral-100">
+                داشبورد <span className="text-primary">نکست</span>
+              </h1>
+            </Link>
           </div>
           <ProfileDropdown />
         </div>
