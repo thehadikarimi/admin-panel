@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import TextField from "@/components/elements/TextField";
 import Loading from "@/components/elements/Loading";
 
-import { addCategoryFormSchema } from "@/schema/Yup";
+import { categoryFormSchema } from "@/schema/Yup";
 import { useAddCategory } from "@/services/mutations";
 
 function AddCategoryForm() {
@@ -17,7 +17,7 @@ function AddCategoryForm() {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(addCategoryFormSchema) });
+  } = useForm({ resolver: yupResolver(categoryFormSchema) });
 
   const queryClient = useQueryClient();
   const { mutate, isPending } = useAddCategory();

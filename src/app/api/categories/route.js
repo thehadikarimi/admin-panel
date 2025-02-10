@@ -109,3 +109,98 @@ export async function POST(request) {
     { status: 201 },
   );
 }
+
+export async function DELETE(request) {
+  const isConnected = await DB_IsConnected();
+  if (isConnected === "not-connected") {
+    return Response.json(
+      {
+        status: 500,
+        data: { message: "خطا در هنگام اتصال به دیتابیس." },
+      },
+      { status: 500 },
+    );
+  }
+
+  const session = await getServerSession();
+
+  if (!session) {
+    return Response.json(
+      { status: 401, data: { message: "لطفا وارد حساب کاربری خود شوید." } },
+      { status: 401 },
+    );
+  }
+
+  const body = await request.json();
+  const { _id } = body;
+
+  if (!_id) {
+    return Response.json(
+      {
+        status: 422,
+        data: { _id, message: "لطفا آیدی دسته بندی را به درستی وارد نمایید." },
+      },
+      { status: 422 },
+    );
+  }
+
+  await Category.deleteOne({ _id });
+
+  return Response.json(
+    {
+      status: 200,
+      data: { _id, message: "دسته بندی با موفقیت حذف شد." },
+    },
+    { status: 200 },
+  );
+}
+
+export async function PATCH(request) {
+  const isConnected = await DB_IsConnected();
+  if (isConnected === "not-connected") {
+    return Response.json(
+      {
+        status: 500,
+        data: { message: "خطا در هنگام اتصال به دیتابیس." },
+      },
+      { status: 500 },
+    );
+  }
+
+  const session = await getServerSession();
+
+  if (!session) {
+    return Response.json(
+      { status: 401, data: { message: "لطفا وارد حساب کاربری خود شوید." } },
+      { status: 401 },
+    );
+  }
+
+  const body = await request.json();
+  const { _id, name, description = "" } = body;
+
+  if (!_id || !name) {
+    return Response.json(
+      {
+        status: 422,
+        data: { message: "لطفا اطلاعات را به درستی وارد نمایید." },
+      },
+      { status: 422 },
+    );
+  }
+
+  const category = await Category.findOne({ _id });
+
+  category.name = name;
+  category.description = description || category.description;
+
+  category.save();
+
+  return Response.json(
+    {
+      status: 200,
+      data: { message: "دسته بندی با موفقیت ویرایش شد." },
+    },
+    { status: 200 },
+  );
+}

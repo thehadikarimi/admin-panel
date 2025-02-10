@@ -22,7 +22,7 @@ const categorySchema = new Schema({
 });
 
 categorySchema.pre("save", function (next) {
-  this.updatedAt = () => Date.now();
+  this.updatedAt = Date.now();
   next();
 });
 

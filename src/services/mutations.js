@@ -34,4 +34,24 @@ const useAddCategory = () => {
   return useMutation({ mutationFn });
 };
 
-export { useSignup, useLogin, useDeleteUser, useAddUser, useAddCategory };
+const useDeleteCategory = () => {
+  const mutationFn = (id) => api.delete("/categories", { data: { _id: id } });
+
+  return useMutation({ mutationFn });
+};
+
+const useUpdateCategory = () => {
+  const mutationFn = (data) => api.patch("/categories", data);
+
+  return useMutation({ mutationFn });
+};
+
+export {
+  useSignup,
+  useLogin,
+  useDeleteUser,
+  useAddUser,
+  useAddCategory,
+  useDeleteCategory,
+  useUpdateCategory,
+};

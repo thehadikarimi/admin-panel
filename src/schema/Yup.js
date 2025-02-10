@@ -44,7 +44,7 @@ const addUserFormSchema = object({
   }),
 });
 
-const addCategoryFormSchema = object({
+const categoryFormSchema = object({
   name: string()
     .required("لطفا نام دسته بندی را وارد نمایید")
     .min(4, "حداقل باید 4 کاراکتر وارد نمایید")
@@ -64,5 +64,5 @@ export {
   signupformSchema,
   loginformSchema,
   addUserFormSchema,
-  addCategoryFormSchema,
+  categoryFormSchema,
 };
