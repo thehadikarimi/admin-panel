@@ -13,14 +13,21 @@ const useGetUsers = () => {
   const queryFn = () => api.get("/users");
   const queryKey = ["users"];
 
-  return useQuery({ queryKey, queryFn, refetchOnMount: true });
+  return useQuery({ queryKey, queryFn });
+};
+
+const useGetUserById = (userId) => {
+  const queryFn = () => api.get(`/users/${userId}`);
+  const queryKey = ["user", userId];
+
+  return useQuery({ queryKey, queryFn });
 };
 
 const useGetCategories = () => {
   const queryFn = () => api.get("/categories");
   const queryKey = ["categories"];
 
-  return useQuery({ queryKey, queryFn, refetchOnMount: true });
+  return useQuery({ queryKey, queryFn });
 };
 
-export { useGetProfile, useGetUsers, useGetCategories };
+export { useGetProfile, useGetUsers, useGetUserById, useGetCategories };

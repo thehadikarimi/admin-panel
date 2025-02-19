@@ -1,0 +1,62 @@
+.react-select__value-container {
+  padding: 1rem 0.75rem !important;
+  color: var(--black) !important;
+}
+
+.dark .react-select__value-container {
+  color: var(--neutral-500) !important;
+}
+
+.react-select__single-value {
+  color: inherit !important;
+  margin: 0 !important;
+}
+
+.react-select__placeholder {
+  color: var(--neutral-700) !important;
+  margin: 0 !important;
+}
+
+.react-select__input-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
+.react-select__input {
+  color: inherit !important;
+}
+
+.react-select__menu {
+  border: 1px solid var(--neutral-500) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+    0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.dark .react-select__menu {
+  border: 1px solid var(--neutral-700) !important;
+}
+
+.react-select__option {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.react-select__option--is-focused {
+  background-color: var(--neutral-500) !important;
+}
+
+.dark .react-select__option--is-focused {
+  background-color: var(--neutral-900) !important;
+}
+
+.react-select__option--is-selected,
+.dark .react-select__option--is-selected {
+  color: var(--neutral-500) !important;
+  background-color: var(--primary) !important;
+}

@@ -28,6 +28,12 @@ const useAddUser = () => {
   return useMutation({ mutationFn });
 };
 
+const useUpdateUser = (userId) => {
+  const mutationFn = (data) => api.patch(`/users/${userId}`, data);
+
+  return useMutation({ mutationFn });
+};
+
 const useAddCategory = () => {
   const mutationFn = (data) => api.post("/categories", data);
 
@@ -51,6 +57,7 @@ export {
   useLogin,
   useDeleteUser,
   useAddUser,
+  useUpdateUser,
   useAddCategory,
   useDeleteCategory,
   useUpdateCategory,

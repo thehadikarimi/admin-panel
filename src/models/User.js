@@ -17,17 +17,33 @@ const userSchema = new Schema({
     default: () => Date.now(),
     immutable: true,
   },
-  payment: [
-    {
+  updatedAt: {
+    type: Date,
+    default: () => Date.now(),
+  },
+  payment: {
+    lastPayment: {
       year: String,
-      data: [
-        {
-          month: String,
-          status: String,
-        },
-      ],
+      month: String,
+      status: String,
     },
-  ],
+    allPayments: [
+      {
+        year: String,
+        data: [
+          {
+            month: String,
+            status: String,
+          },
+        ],
+      },
+    ],
+  },
+});
+
+userSchema.pre("save", function (next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 const User = models.User || model("User", userSchema);

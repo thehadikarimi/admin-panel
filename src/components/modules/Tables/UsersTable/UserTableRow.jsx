@@ -5,7 +5,11 @@ import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import SVGIcon from "@/components/elements/SVGIcon";
-import { Dropdown, DropdownContent, DropdownToggle } from "../../Dropdown";
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownToggle,
+} from "@/components/modules/Dropdown";
 
 import { useModal } from "@/context/ModalProvider";
 
@@ -65,6 +69,24 @@ function UserTableRow({ userData }) {
     openModal(modalData);
   };
 
+  const linkHandler = (isEdit = false) => {
+    switch (userData._id === profile.data.user._id) {
+      case true:
+        if (isEdit) {
+          return "/admin/personal-details?edit=1";
+        } else {
+          return "/admin/personal-details";
+        }
+
+      case false:
+        if (isEdit) {
+          return `/admin/users/${userData._id}?edit=1`;
+        } else {
+          return `/admin/users/${userData._id}`;
+        }
+    }
+  };
+
   return (
     <tr className="h-14 text-neutral-900 transition-colors duration-300 *:px-3 lg:h-16 dark:text-neutral-500">
       <td>
@@ -75,8 +97,8 @@ function UserTableRow({ userData }) {
           </span>
         </div>
       </td>
-      <td className="hidden sm:table-cell">{userData.phoneNumber}</td>
-      <td className="hidden xl:table-cell">{userData.category}</td>
+      <td className="hidden sm:table-cell">{userData.phoneNumber || "_"}</td>
+      <td className="hidden xl:table-cell">{userData.category || "_"}</td>
       <td className="hidden md:table-cell">آخرین پرداختی</td>
       <td>
         <div className="flex items-center justify-center">
@@ -91,7 +113,7 @@ function UserTableRow({ userData }) {
               <ul className="p-2">
                 <li>
                   <Link
-                    href={`/admin/users/${userData._id}`}
+                    href={linkHandler()}
                     className="block rounded p-1.5 text-xs hover:bg-neutral-500 lg:text-sm dark:hover:bg-neutral-700"
                   >
                     مشاهده
@@ -99,7 +121,7 @@ function UserTableRow({ userData }) {
                 </li>
                 <li>
                   <Link
-                    href={`/admin/users/${userData._id}?edit=true`}
+                    href={linkHandler(true)}
                     className="block rounded p-1.5 text-xs hover:bg-neutral-500 lg:text-sm dark:hover:bg-neutral-700"
                   >
                     ویرایش

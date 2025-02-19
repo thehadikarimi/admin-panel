@@ -12,6 +12,22 @@
   }
 }
 
+:root {
+  --white: #ffffff;
+  --black: #14151b;
+  --dark-500: #122031;
+  --dark-700: #020d1a;
+  --success: #2e7b32;
+  --error: #d32f2f;
+  --primary: #5750f1;
+  --neutral-100: #f1f2f4;
+  --neutral-200: #f6f7f8;
+  --neutral-500: #e4e7eb;
+  --neutral-700: #4b5563;
+  --neutral-900: #374151;
+  --overlay: #00000066;
+}
+
 * {
   margin: 0;
   padding: 0;
