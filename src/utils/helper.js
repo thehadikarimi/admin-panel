@@ -13,3 +13,7 @@ export function jalaliDate(date) {
 export function curMonth(type = "numeric") {
   return new Date().toLocaleDateString("fa-IR", { month: type });
 }
+
+export function curYear(type = "numeric") {
+  return new Date().toLocaleDateString("fa-IR", { year: type });
+}

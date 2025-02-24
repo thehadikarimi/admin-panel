@@ -3,9 +3,11 @@ import Select from "react-select";
 
 import { useGetCategories } from "@/services/queries";
 
+import { cn } from "@/utils/helper";
+
 import "./ControlledSelectOptions.css";
 
-function ControlledSelectOptions({ control, name, title, defaultValue }) {
+function ControlledSelectOptions({ control, name, title, defaultValue, className }) {
   const { data, isPending } = useGetCategories();
   const options = data?.data.categories.map((category) => ({
     value: category._id,
@@ -33,12 +35,12 @@ function ControlledSelectOptions({ control, name, title, defaultValue }) {
       name={name}
       render={({ field: { onChange } }) => (
         <div className="flex-grow">
-          <div className="relative text-sm lg:text-base">
+          <div className={cn("relative text-sm lg:text-base", className)}>
             {isPending ? (
               <input className="w-full border-none bg-transparent px-3 py-4 outline-none" />
             ) : (
               <Select
-                className="peer *:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-colors *:!duration-300 dark:*:!bg-dark-500 dark:*:!text-neutral-500"
+                className="*:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-colors *:!duration-300 dark:*:!bg-dark-500 dark:*:!text-neutral-500"
                 classNamePrefix="react-select"
                 placeholder="انتخاب کنید"
                 defaultValue={options?.find(

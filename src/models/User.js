@@ -25,7 +25,6 @@ const userSchema = new Schema({
     lastPayment: {
       year: String,
       month: String,
-      status: String,
     },
     allPayments: [
       {

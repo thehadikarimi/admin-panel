@@ -7,6 +7,7 @@ import Loading from "@/components/elements/Loading";
 
 import { useSignup } from "@/services/mutations";
 import { signupformSchema } from "@/schema/Yup";
+import { userDefaultPayment } from "@/constant/payment";
 
 function SignupForm({ setIsLogin }) {
   const {
@@ -18,6 +19,7 @@ function SignupForm({ setIsLogin }) {
   const { mutate, isPending } = useSignup();
 
   const submitHandler = (data) => {
+    data.payment = userDefaultPayment;
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);

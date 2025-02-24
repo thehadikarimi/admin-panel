@@ -5,14 +5,18 @@ import toast from "react-hot-toast";
 
 import TextField from "@/components/elements/TextField";
 import Loading from "@/components/elements/Loading";
+import ControlledSelectOptions from "@/components/modules/SelectOptions/ControlledSelectOptions";
 
 import { addUserFormSchema } from "@/schema/Yup";
 import { useAddUser } from "@/services/mutations";
+import { userDefaultPayment } from "@/constant/payment";
 
 function AddUserForm({ stateToggle }) {
   const {
     register,
     handleSubmit,
+    control,
+    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(addUserFormSchema) });
 
@@ -20,6 +24,7 @@ function AddUserForm({ stateToggle }) {
   const { mutate, isPending } = useAddUser();
 
   const submitHandler = (data) => {
+    data.payment = userDefaultPayment;
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);
@@ -43,19 +48,34 @@ function AddUserForm({ stateToggle }) {
           containerCl="text-xs lg:text-sm"
         />
         <TextField
+          name="phoneNumber"
+          title="شماره تلفن (اختیاری)"
+          register={register}
+          errors={errors}
+          containerCl="text-xs lg:text-sm"
+        />
+        <ControlledSelectOptions
+          control={control}
+          name="category"
+          title="دسته بندی (اختیاری)"
+          className="text-xs lg:text-sm"
+        />
+        <TextField
           name="email"
           title="ایمیل (اختیاری)"
           register={register}
           errors={errors}
           containerCl="text-xs lg:text-sm"
         />
-        <TextField
-          name="password"
-          title="گذرواژه (اختیاری)"
-          register={register}
-          errors={errors}
-          containerCl="text-xs lg:text-sm"
-        />
+        {watch("email") ? (
+          <TextField
+            name="password"
+            title="گذرواژه"
+            register={register}
+            errors={errors}
+            containerCl="text-xs lg:text-sm"
+          />
+        ) : null}
       </div>
       <div className="flex w-full justify-end gap-4">
         <button

@@ -120,7 +120,7 @@ export async function POST(request) {
   }
 
   const body = await request.json();
-  const { name, email, password } = body;
+  const { name, email, password, phoneNumber, category, payment } = body;
 
   if (!name) {
     return Response.json(
@@ -164,7 +164,14 @@ export async function POST(request) {
 
   const hashedPassword = email && password ? await hashPassword(password) : "";
 
-  await User.create({ name, email, password: hashedPassword });
+  await User.create({
+    name,
+    email,
+    password: hashedPassword,
+    phoneNumber,
+    category,
+    payment,
+  });
 
   return Response.json(
     {

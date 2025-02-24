@@ -70,7 +70,7 @@ function UserTableRow({ userData }) {
   };
 
   const linkHandler = (isEdit = false) => {
-    switch (userData._id === profile.data.user._id) {
+    switch (userData._id === profile?.data.user._id) {
       case true:
         if (isEdit) {
           return "/admin/personal-details?edit=1";

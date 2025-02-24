@@ -16,7 +16,7 @@ export async function POST(request) {
   }
 
   const body = await request.json();
-  const { name, email, password } = body;
+  const { name, email, password, payment } = body;
 
   if (!name || !email || !password) {
     return Response.json(
@@ -45,7 +45,7 @@ export async function POST(request) {
 
   const hashedPassword = await hashPassword(password);
 
-  await User.create({ name, email, password: hashedPassword });
+  await User.create({ name, email, password: hashedPassword, payment });
 
   return Response.json(
     {

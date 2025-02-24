@@ -3,9 +3,10 @@
 import { notFound } from "next/navigation";
 
 import Loading from "@/components/elements/Loading";
+import DetailsPageHeader from "./DetailsPageHeader";
+import DetailsPagePayment from "./DetailsPagePayment";
 
 import { useGetUserById } from "@/services/queries";
-import DetailsPageHeader from "./DetailsPageHeader";
 
 function UserDetailsPage({ userId }) {
   const { data, isPending } = useGetUserById(userId);
@@ -25,6 +26,7 @@ function UserDetailsPage({ userId }) {
   return (
     <div className="flex flex-col gap-3 lg:gap-5">
       <DetailsPageHeader userData={user} />
+      <DetailsPagePayment userData={user} />
     </div>
   );
 }
