@@ -1,48 +1,48 @@
-.react-select__control {
+.year-select-options__control {
   min-height: auto !important;
   border: 1px solid var(--neutral-500) !important;
   border-radius: 8px !important;
   box-shadow: none !important;
 }
 
-.dark .react-select__control {
+.dark .year-select-options__control {
   border: 1px solid var(--neutral-700) !important;
 }
 
-.react-select__value-container {
+.year-select-options__value-container {
   padding: 0.25rem 0.5rem !important;
   color: var(--black) !important;
 }
 
-.dark .react-select__value-container {
+.dark .year-select-options__value-container {
   color: var(--neutral-500) !important;
 }
 
-.react-select__single-value {
+.year-select-options__single-value {
   color: inherit !important;
   margin: 0 !important;
 }
 
-.react-select__placeholder {
+.year-select-options__placeholder {
   color: var(--neutral-700) !important;
   margin: 0 !important;
 }
 
-.react-select__input-container {
+.year-select-options__input-container {
   margin: 0 !important;
   padding: 0 !important;
   color: inherit !important;
 }
 
-.react-select__input {
+.year-select-options__input {
   color: inherit !important;
 }
 
-.react-select__indicator {
+.year-select-options__indicator {
   padding: 6px !important;
 }
 
-.react-select__menu {
+.year-select-options__menu {
   z-index: 3 !important;
   margin: 4px 0 !important;
   border: 1px solid var(--neutral-500) !important;
@@ -55,26 +55,26 @@
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
-.dark .react-select__menu {
+.dark .year-select-options__menu {
   border: 1px solid var(--neutral-700) !important;
 }
 
-.react-select__option {
+.year-select-options__option {
   font-size: 0.875rem !important;
   line-height: 1.25rem !important;
   padding: 0.25rem 0.5rem !important;
 }
 
-.react-select__option--is-focused {
+.year-select-options__option--is-focused {
   background-color: var(--neutral-500) !important;
 }
 
-.dark .react-select__option--is-focused {
+.dark .year-select-options__option--is-focused {
   background-color: var(--neutral-900) !important;
 }
 
-.react-select__option--is-selected,
-.dark .react-select__option--is-selected {
+.year-select-options__option--is-selected,
+.dark .year-select-options__option--is-selected {
   color: var(--neutral-500) !important;
   background-color: var(--primary) !important;
 }

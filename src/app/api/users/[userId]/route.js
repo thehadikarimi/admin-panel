@@ -95,7 +95,15 @@ export async function PATCH(request, { params }) {
   }
 
   const body = await request.json();
-  const { name, email, password, category, birthDate, phoneNumber } = body;
+  const {
+    name,
+    email,
+    password,
+    category,
+    birthDate,
+    phoneNumber,
+    updateMonthPayment,
+  } = body;
 
   user.name = name || user.name;
   user.email = email || user.email;
@@ -103,6 +111,14 @@ export async function PATCH(request, { params }) {
   user.category = category || user.category;
   user.birthDate = birthDate || user.birthDate;
   user.phoneNumber = phoneNumber || user.phoneNumber;
+
+  user.payment.allPayments.map((payment) => {
+    payment.data.map((month) => {
+      if (month._id.toString() === updateMonthPayment?._id) {
+        month.status = updateMonthPayment.status;
+      }
+    });
+  });
 
   user.save();
 

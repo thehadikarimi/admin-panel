@@ -1,33 +1,33 @@
-.react-select__value-container {
+.controlled-select-options__value-container {
   padding: 1rem 0.75rem !important;
   color: var(--black) !important;
 }
 
-.dark .react-select__value-container {
+.dark .controlled-select-options__value-container {
   color: var(--neutral-500) !important;
 }
 
-.react-select__single-value {
+.controlled-select-options__single-value {
   color: inherit !important;
   margin: 0 !important;
 }
 
-.react-select__placeholder {
+.controlled-select-options__placeholder {
   color: var(--neutral-700) !important;
   margin: 0 !important;
 }
 
-.react-select__input-container {
+.controlled-select-options__input-container {
   margin: 0 !important;
   padding: 0 !important;
   color: inherit !important;
 }
 
-.react-select__input {
+.controlled-select-options__input {
   color: inherit !important;
 }
 
-.react-select__menu {
+.controlled-select-options__menu {
   border: 1px solid var(--neutral-500) !important;
   border-radius: 0.5rem !important;
   overflow: hidden;
@@ -38,25 +38,25 @@
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
-.dark .react-select__menu {
+.dark .controlled-select-options__menu {
   border: 1px solid var(--neutral-700) !important;
 }
 
-.react-select__option {
+.controlled-select-options__option {
   font-size: 0.875rem !important;
   line-height: 1.25rem !important;
 }
 
-.react-select__option--is-focused {
+.controlled-select-options__option--is-focused {
   background-color: var(--neutral-500) !important;
 }
 
-.dark .react-select__option--is-focused {
+.dark .controlled-select-options__option--is-focused {
   background-color: var(--neutral-900) !important;
 }
 
-.react-select__option--is-selected,
-.dark .react-select__option--is-selected {
+.controlled-select-options__option--is-selected,
+.dark .controlled-select-options__option--is-selected {
   color: var(--neutral-500) !important;
   background-color: var(--primary) !important;
 }

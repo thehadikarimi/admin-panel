@@ -4,13 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { FreeMode } from "swiper/modules";
 
-import "./DetailsPagePayment.css";
 import PaymentCard from "@/components/modules/PaymentCard";
 
 import { curMonth } from "@/utils/helper";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import "./DetailsPagePayment.css";
 
 function DetailsPagePayment({ userData }) {
   const {
@@ -41,7 +41,7 @@ function DetailsPagePayment({ userData }) {
         <div className="flex w-1/2 items-center justify-end whitespace-nowrap">
           <Select
             className="text-sm transition-colors duration-300 *:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-colors *:!duration-300 lg:text-base dark:*:!bg-dark-500 dark:*:!text-neutral-500"
-            classNamePrefix="react-select"
+            classNamePrefix="year-select-options"
             value={year}
             options={options}
             onChange={(e) => setYear(e)}
@@ -61,7 +61,12 @@ function DetailsPagePayment({ userData }) {
               checkPassMonth(payment.month);
               return (
                 <SwiperSlide key={payment._id} className="!w-fit last:!ml-0">
-                  <PaymentCard year={year} payment={payment} isPass={isPass} />
+                  <PaymentCard
+                    userId={userData._id}
+                    year={year}
+                    payment={payment}
+                    isPass={isPass}
+                  />
                 </SwiperSlide>
               );
             })}

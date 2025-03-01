@@ -15,5 +15,5 @@ export function curMonth(type = "numeric") {
 }
 
 export function curYear(type = "numeric") {
-  return new Date().toLocaleDateString("fa-IR", { year: type });
+  return new Date().toLocaleDateString("fa-IR-u-nu-latn", { year: type });
 }

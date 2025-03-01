@@ -1,11 +1,15 @@
+import PaymentStatusModal from "@/components/modules/Modals/PaymentStatusModal";
 import SVGIcon from "@/components/elements/SVGIcon";
 
-import { cn, curMonth, curYear } from "@/utils/helper";
-import { p2e } from "@/utils/replaceNumber";
+import useToggle from "@/hooks/useToggle";
 
-function PaymentCard({ year, payment, isPass }) {
+import { cn, curMonth, curYear } from "@/utils/helper";
+
+function PaymentCard({ userId, year, payment, isPass }) {
+  const [paymentModal, paymentModalToggle] = useToggle(false);
+
   const isCurMonth = () => {
-    if (p2e(curYear()) === year.label && curMonth("long") === payment.month) {
+    if (curYear() === year.label && curMonth("long") === payment.month) {
       return true;
     }
 
@@ -28,7 +32,7 @@ function PaymentCard({ year, payment, isPass }) {
       <p className="text-sm font-medium lg:text-base">{payment.month}</p>
       {isPass && !isCurMonth() ? null : (
         <div className="flex">
-          <button>
+          <button onClick={() => paymentModalToggle(true)}>
             <SVGIcon
               name="edit"
               className="size-4 transition-colors duration-300 lg:size-5 dark:fill-neutral-500"
@@ -36,6 +40,12 @@ function PaymentCard({ year, payment, isPass }) {
           </button>
         </div>
       )}
+      <PaymentStatusModal
+        state={paymentModal}
+        stateToggle={paymentModalToggle}
+        userId={userId}
+        payment={payment}
+      />
     </div>
   );
 }

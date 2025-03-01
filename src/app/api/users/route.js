@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 
 import User from "@/models/User";
+import Category from "@/models/Category";
 
 import { DB_IsConnected } from "@/utils/DB";
 import { hashPassword } from "@/utils/password";
@@ -85,6 +86,14 @@ export async function DELETE(request) {
       },
       { status: 422 },
     );
+  }
+
+  const user = await User.findOne({ _id });
+
+  if (user.category) {
+    const oldCategory = await Category.findOne({ name: user.category });
+    oldCategory.userQuantity--;
+    oldCategory.save();
   }
 
   await User.deleteOne({ _id });
@@ -172,6 +181,12 @@ export async function POST(request) {
     category,
     payment,
   });
+
+  if (category) {
+    const oldCategory = await Category.findOne({ name: category });
+    oldCategory.userQuantity++;
+    oldCategory.save();
+  }
 
   return Response.json(
     {

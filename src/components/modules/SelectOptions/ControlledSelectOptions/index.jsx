@@ -41,7 +41,7 @@ function ControlledSelectOptions({ control, name, title, defaultValue, className
             ) : (
               <Select
                 className="*:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-colors *:!duration-300 dark:*:!bg-dark-500 dark:*:!text-neutral-500"
-                classNamePrefix="react-select"
+                classNamePrefix="controlled-select-options"
                 placeholder="انتخاب کنید"
                 defaultValue={options?.find(
                   (option) => option.label === defaultValue,
