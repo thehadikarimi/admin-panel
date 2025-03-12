@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import Header from "./Header";
 import Sidebar from "@/components/modules/Sidebar";
-import Footer from "./Footer";
+import Footer from "../Footer";
 
 import useToggle from "@/hooks/useToggle";
 import useScroll from "@/hooks/useScroll";

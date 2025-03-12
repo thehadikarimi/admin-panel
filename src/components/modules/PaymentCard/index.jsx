@@ -5,7 +5,7 @@ import useToggle from "@/hooks/useToggle";
 
 import { cn, curMonth, curYear } from "@/utils/helper";
 
-function PaymentCard({ userId, year, payment, isPass }) {
+function PaymentCard({ userId, year, payment, isPass, enablePaymentEditing }) {
   const [paymentModal, paymentModalToggle] = useToggle(false);
 
   const isCurMonth = () => {
@@ -30,16 +30,18 @@ function PaymentCard({ userId, year, payment, isPass }) {
     >
       <p className="text-xs lg:text-sm">{year.label}</p>
       <p className="text-sm font-medium lg:text-base">{payment.month}</p>
-      {isPass && !isCurMonth() ? null : (
-        <div className="flex">
-          <button onClick={() => paymentModalToggle(true)}>
-            <SVGIcon
-              name="edit"
-              className="size-4 transition-colors duration-300 lg:size-5 dark:fill-neutral-500"
-            />
-          </button>
-        </div>
-      )}
+      {enablePaymentEditing ? (
+        isPass && !isCurMonth() ? null : (
+          <div className="flex">
+            <button onClick={() => paymentModalToggle(true)}>
+              <SVGIcon
+                name="edit"
+                className="size-4 transition-colors duration-300 lg:size-5 dark:fill-neutral-500"
+              />
+            </button>
+          </div>
+        )
+      ) : null}
       <PaymentStatusModal
         state={paymentModal}
         stateToggle={paymentModalToggle}

@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "./DetailsPagePayment.css";
 
-function DetailsPagePayment({ userData }) {
+function DetailsPagePayment({ userData, enablePaymentEditing = true }) {
   const {
     payment: { lastPayment, allPayments },
   } = userData;
@@ -66,6 +66,7 @@ function DetailsPagePayment({ userData }) {
                     year={year}
                     payment={payment}
                     isPass={isPass}
+                    enablePaymentEditing={enablePaymentEditing}
                   />
                 </SwiperSlide>
               );

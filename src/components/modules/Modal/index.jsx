@@ -39,7 +39,7 @@ function Modal({ state, stateToggle, children }) {
           >
             <div
               ref={modalOverlayRef}
-              className="fixed inset-0 left-0 top-0 z-10 bg-black/30 backdrop-blur-sm"
+              className="fixed inset-0 left-0 top-0 z-40 bg-black/30 backdrop-blur-sm"
             ></div>
           </CSSTransition>
           <CSSTransition
@@ -51,7 +51,7 @@ function Modal({ state, stateToggle, children }) {
           >
             <div
               ref={modalContentRef}
-              className="fixed inset-0 left-0 top-0 z-20 flex items-center justify-center"
+              className="fixed inset-0 left-0 top-0 z-50 flex items-center justify-center"
             >
               <ClickOutside
                 onClick={() => stateToggle(false)}

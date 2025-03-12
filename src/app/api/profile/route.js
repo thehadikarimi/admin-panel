@@ -42,6 +42,9 @@ export async function GET() {
     role: user.role,
     name: user.name,
     email: user.email,
+    phoneNumber: user.phoneNumber,
+    category: user.category,
+    birthDate: user.birthDate,
     payment: user.payment,
   };
 

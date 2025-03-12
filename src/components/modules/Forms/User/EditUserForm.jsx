@@ -13,7 +13,7 @@ import { editUserFormSchema } from "@/schema/Yup";
 import { useUpdateUser } from "@/services/mutations";
 import { cn } from "@/utils/helper";
 
-function EditUserForm({ userData }) {
+function EditUserForm({ userData, enableCategoryEditing = true }) {
   const { _id, name, email, phoneNumber, birthDate, category } = userData;
 
   const router = useRouter();
@@ -42,6 +42,7 @@ function EditUserForm({ userData }) {
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);
+        queryClient.invalidateQueries({ queryKey: ["profile"] });
         queryClient.invalidateQueries({ queryKey: ["users"] });
         queryClient.invalidateQueries({ queryKey: ["user", _id] });
         router.push(pathname);
@@ -94,12 +95,14 @@ function EditUserForm({ userData }) {
             title="تاریخ تولد"
             defaultValue={birthDate}
           />
-          <ControlledSelectOptions
-            control={control}
-            name="category"
-            title="دسته بندی"
-            defaultValue={category}
-          />
+          {enableCategoryEditing ? (
+            <ControlledSelectOptions
+              control={control}
+              name="category"
+              title="دسته بندی"
+              defaultValue={category}
+            />
+          ) : null}
         </div>
         <div className="flex w-full justify-end gap-5">
           <button

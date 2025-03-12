@@ -5,7 +5,7 @@ import EditUserForm from "@/components/modules/Forms/User/EditUserForm";
 
 import { jalaliDate } from "@/utils/helper";
 
-function DetailsPageHeader({ userData }) {
+function DetailsPageHeader({ userData, enableDataEditing = true }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -30,18 +30,20 @@ function DetailsPageHeader({ userData }) {
               {name}
             </h2>
             <div className="flex w-1/2 items-center justify-end overflow-hidden whitespace-nowrap">
-              <button
-                onClick={() => router.push(pathname + "?edit=1")}
-                className="flex items-center gap-1"
-              >
-                <span className="text-xs text-primary lg:text-sm">
-                  ویرایش اطلاعات {role === "ADMIN" ? "مدیر" : "کاربر"}
-                </span>
-                <SVGIcon
-                  name="edit"
-                  className="size-4 fill-primary lg:size-5"
-                />
-              </button>
+              {enableDataEditing ? (
+                <button
+                  onClick={() => router.push(pathname + "?edit=1")}
+                  className="flex items-center gap-1"
+                >
+                  <span className="text-xs text-primary lg:text-sm">
+                    ویرایش اطلاعات {role === "ADMIN" ? "مدیر" : "کاربر"}
+                  </span>
+                  <SVGIcon
+                    name="edit"
+                    className="size-4 fill-primary lg:size-5"
+                  />
+                </button>
+              ) : null}
             </div>
           </div>
           <div className="mt-6">
