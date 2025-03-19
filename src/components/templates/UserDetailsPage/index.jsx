@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Loading from "@/components/elements/Loading";
 import DetailsPageHeader from "./DetailsPageHeader";
 import DetailsPagePayment from "./DetailsPagePayment";
+import DetailsPageTickets from "./DetailsPageTickets";
 
 import { useGetUserById } from "@/services/queries";
 
@@ -27,6 +28,7 @@ function UserDetailsPage({ userId }) {
     <div className="flex flex-col gap-3 lg:gap-5">
       <DetailsPageHeader userData={user} />
       <DetailsPagePayment userData={user} />
+      <DetailsPageTickets userId={user._id} />
     </div>
   );
 }

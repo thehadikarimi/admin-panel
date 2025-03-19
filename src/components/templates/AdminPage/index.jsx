@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import UsersTable from "@/components/modules/Tables/UsersTable";
-import TicketsTable from "@/components/modules/Tables/TicketsTable";
+import AdminTicketsTable from "@/components/modules/Tables/TicketsTable/AdminTicketsTable";
 import SVGIcon from "@/components/elements/SVGIcon";
 
 function AdminPage() {
@@ -22,7 +22,7 @@ function AdminPage() {
       </div>
       <div className="c-container">
         <h2 className="title">لیست تیکت ها</h2>
-        <TicketsTable />
+        <AdminTicketsTable qty={4} />
         <div className="mt-5 text-left">
           <Link
             href="/admin/tickets"

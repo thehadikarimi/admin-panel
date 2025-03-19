@@ -5,8 +5,9 @@ import DetailsPageHeader from "../UserDetailsPage/DetailsPageHeader";
 import DetailsPagePayment from "../UserDetailsPage/DetailsPagePayment";
 
 import { useGetProfile } from "@/services/queries";
+import DetailsPageTickets from "../UserDetailsPage/DetailsPageTickets";
 
-function UserPage() {
+function UserProfilePage() {
   const { data, isPending } = useGetProfile();
 
   if (isPending) {
@@ -23,8 +24,9 @@ function UserPage() {
     <div className="flex flex-col gap-3 lg:gap-5">
       <DetailsPageHeader userData={user} enableDataEditing={false} />
       <DetailsPagePayment userData={user} enablePaymentEditing={false} />
+      <DetailsPageTickets userId={user._id} />
     </div>
   );
 }
 
-export default UserPage;
+export default UserProfilePage;

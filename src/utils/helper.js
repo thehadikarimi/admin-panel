@@ -7,11 +7,11 @@ export function cn(...inputs) {
 
 export function jalaliDate(date) {
   if (!date) return;
-  return new Date(date).toLocaleDateString("fa-IR");
+  return new Date(date).toLocaleDateString("fa-IR-u-nu-latn");
 }
 
 export function curMonth(type = "numeric") {
-  return new Date().toLocaleDateString("fa-IR", { month: type });
+  return new Date().toLocaleDateString("fa-IR-u-nu-latn", { month: type });
 }
 
 export function curYear(type = "numeric") {

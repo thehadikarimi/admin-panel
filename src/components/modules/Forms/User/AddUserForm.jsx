@@ -69,6 +69,7 @@ function AddUserForm({ stateToggle }) {
         />
         {watch("email") ? (
           <TextField
+            type="password"
             name="password"
             title="گذرواژه"
             register={register}

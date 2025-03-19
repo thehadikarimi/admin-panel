@@ -30,4 +30,25 @@ const useGetCategories = () => {
   return useQuery({ queryKey, queryFn });
 };
 
-export { useGetProfile, useGetUsers, useGetUserById, useGetCategories };
+const useGetTickets = () => {
+  const queryFn = () => api.get("/tickets");
+  const queryKey = ["tickets"];
+
+  return useQuery({ queryKey, queryFn });
+};
+
+const useGetUserTickets = (userId) => {
+  const queryFn = () => api.get(`/users/${userId}/tickets`);
+  const queryKey = ["user-tickets", userId];
+
+  return useQuery({ queryKey, queryFn });
+};
+
+export {
+  useGetProfile,
+  useGetUsers,
+  useGetUserById,
+  useGetCategories,
+  useGetTickets,
+  useGetUserTickets,
+};
