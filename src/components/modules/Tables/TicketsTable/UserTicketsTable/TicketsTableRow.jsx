@@ -7,10 +7,12 @@ import {
   DropdownToggle,
 } from "@/components/modules/Dropdown";
 
+import { jalaliDate } from "@/utils/helper";
+
 function TicketsTableRow({ ticketData }) {
   return (
     <tr className="h-14 text-neutral-900 transition-colors duration-300 *:px-3 lg:h-16 dark:text-neutral-500">
-      <td>{ticketData.updatedAt || "_"}</td>
+      <td>{jalaliDate(ticketData.updatedAt) || "_"}</td>
       <td
         className="hidden overflow-hidden text-ellipsis sm:table-cell"
         colSpan={2}
@@ -18,7 +20,7 @@ function TicketsTableRow({ ticketData }) {
         {ticketData.title || "_"}
       </td>
       <td className="hidden md:table-cell">
-        {ticketData.status === "READ" ? "بسته شده" : "باز"}
+        {ticketData.status === "READ" ? "خوانده شده" : "خوانده نشده"}
       </td>
       <td>
         <div className="flex items-center justify-center">

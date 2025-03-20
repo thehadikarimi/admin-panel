@@ -24,7 +24,7 @@ function UserProfilePage() {
     <div className="flex flex-col gap-3 lg:gap-5">
       <DetailsPageHeader userData={user} enableDataEditing={false} />
       <DetailsPagePayment userData={user} enablePaymentEditing={false} />
-      <DetailsPageTickets userId={user._id} />
+      <DetailsPageTickets userId={user._id} qty={4} isUserProfilePage={true} />
     </div>
   );
 }

@@ -23,11 +23,14 @@ const ticketSchema = new Schema({
     type: Date,
     default: () => Date.now(),
   },
-  comments: [
+  messages: [
     {
       authorId: String,
-      image: String,
-      comment: String,
+      image: {
+        name: String,
+        link: String,
+      },
+      message: String,
       createdAt: {
         type: Date,
         default: () => Date.now(),

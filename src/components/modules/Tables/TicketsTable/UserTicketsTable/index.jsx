@@ -5,7 +5,7 @@ import TicketsTableRow from "./TicketsTableRow";
 
 import { useGetUserTickets } from "@/services/queries";
 
-function UserTicketsTable({ userId }) {
+function UserTicketsTable({ userId, qty = undefined }) {
   const { data, isPending } = useGetUserTickets(userId);
 
   return (

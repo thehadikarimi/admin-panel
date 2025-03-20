@@ -1,31 +1,49 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 import Loading from "@/components/elements/Loading";
 import TextField from "@/components/elements/TextField";
 import FileInput from "@/components/elements/FileInput";
 
 import { addTicketFormSchema } from "@/schema/Yup";
+import { useAddNewTicket } from "@/services/mutations";
 
 function AddTicketForm({ userId, stateToggle }) {
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(addTicketFormSchema) });
 
-  const isPending = false;
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useAddNewTicket();
 
   const submtiHandler = (data) => {
     const formData = new FormData();
 
-    data.userId = userId;
-    for (let item in data) {
-      formData.append(item, data[item]);
+    formData.append("userId", userId);
+    formData.append("title", data.title);
+    formData.append("message", data.message);
+    if (data.image[0]) {
+      const image = new File(
+        [data.image[0]],
+        `${userId}_${Date.now()}.${data.image[0].name.split(".").pop()}`,
+      );
+      formData.append("image", image);
     }
 
-    console.log(formData);
+    mutate(formData, {
+      onSuccess: (data) => {
+        toast.success(data.data.message);
+        queryClient.invalidateQueries({ queryKey: ["user-tickets", userId] });
+        stateToggle(false);
+      },
+      onError: (error) => {
+        toast.error(error.data.message || "خطا در برقراری ارتباط");
+      },
+    });
   };
 
   return (

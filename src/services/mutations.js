@@ -59,6 +59,21 @@ const useUpdateCategory = () => {
   return useMutation({ mutationFn });
 };
 
+const useAddNewTicket = () => {
+  const mutationFn = (data) =>
+    api.post("/tickets", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+  return useMutation({ mutationFn });
+};
+
+const useDeleteTicket = () => {
+  const mutationFn = (id) => api.delete("/tickets", { data: { _id: id } });
+
+  return useMutation({ mutationFn });
+};
+
 export {
   useSignup,
   useLogin,
@@ -69,4 +84,6 @@ export {
   useAddCategory,
   useDeleteCategory,
   useUpdateCategory,
+  useAddNewTicket,
+  useDeleteTicket,
 };
