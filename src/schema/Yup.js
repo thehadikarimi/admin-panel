@@ -122,6 +122,28 @@ const addTicketFormSchema = object({
     ),
 });
 
+const SendTicketFormSchema = object({
+  message: string()
+    .required("لطفا توضیحات را وارد نمایید")
+    .min(4, "حداقل باید 4 کاراکتر وارد نمایید")
+    .max(1000, "حداکثر باید 1000 کاراکتر وارد نمایید")
+    .trim(),
+  image: mixed()
+    .test(
+      "حجم فایل",
+      "حجم فایل باید کمتر از 5 مگابایت باشد",
+      (value) =>
+        !value.length || (value[0] && value[0].size <= 5 * 1024 * 1024),
+    )
+    .test(
+      "نوع فایل",
+      "فایل باید تصویر و با فرمت png و یا jpg باشد",
+      (value) =>
+        !value.length ||
+        (value[0] && ["image/jpeg", "image/png"].includes(value[0].type)),
+    ),
+});
+
 export {
   signupformSchema,
   loginformSchema,
@@ -129,4 +151,5 @@ export {
   editUserFormSchema,
   categoryFormSchema,
   addTicketFormSchema,
+  SendTicketFormSchema,
 };

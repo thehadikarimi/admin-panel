@@ -152,7 +152,11 @@ export async function POST(request) {
     );
   }
 
-  const imageLink = image ? await uploadToMega(image, "admin-panel") : "";
+  let imageLink = "";
+  if (image) {
+    const buffer = Buffer.from(await image.arrayBuffer());
+    imageLink = await uploadToMega([image, buffer], "admin-panel");
+  }
 
   await Ticket.create({
     userId,

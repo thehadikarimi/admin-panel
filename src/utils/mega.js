@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Storage } from "megajs";
 
-export async function uploadToMega(file, folderName) {
+export async function uploadToMega([file, fileBuffer], folderName) {
   const [email, password] = process.env.MEGA_CREDENTIALS.split(":");
   const storage = new Storage({ email, password });
 
@@ -11,19 +11,15 @@ export async function uploadToMega(file, folderName) {
         (folder) => folder.name === folderName,
       );
 
-      const uploadedFile = await folder.upload(
-        file,
-        Buffer.from("SGVsbG8gd29ybGQh", "base64"),
-        (err, res) => {
-          res.link((err, link) => {
-            if (err) {
-              console.error(err);
-              return reject(err);
-            }
-            if (link) resolve(link);
-          });
-        },
-      );
+      const uploadedFile = await folder.upload(file, fileBuffer, (err, res) => {
+        res.link((err, link) => {
+          if (err) {
+            console.error(err);
+            return reject(err);
+          }
+          if (link) resolve(link);
+        });
+      });
     });
   });
 }

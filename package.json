@@ -26,6 +26,7 @@
     "react-hot-toast": "^2.5.1",
     "react-select": "^5.10.0",
     "react-transition-group": "^4.4.5",
+    "sanitize-html": "^2.15.0",
     "swiper": "^11.2.4",
     "tailwind-merge": "^2.6.0",
     "yup": "^1.6.1",

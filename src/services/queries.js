@@ -44,6 +44,13 @@ const useGetUserTickets = (userId) => {
   return useQuery({ queryKey, queryFn });
 };
 
+const useGetTicketById = (ticketId) => {
+  const queryFn = () => api.get(`/tickets/${ticketId}`);
+  const queryKey = ["ticket", ticketId];
+
+  return useQuery({ queryKey, queryFn });
+};
+
 export {
   useGetProfile,
   useGetUsers,
@@ -51,4 +58,5 @@ export {
   useGetCategories,
   useGetTickets,
   useGetUserTickets,
+  useGetTicketById,
 };

@@ -5,9 +5,9 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export function jalaliDate(date) {
+export function jalaliDate(date, options = {}) {
   if (!date) return;
-  return new Date(date).toLocaleDateString("fa-IR-u-nu-latn");
+  return new Date(date).toLocaleDateString("fa-IR-u-nu-latn", options);
 }
 
 export function curMonth(type = "numeric") {

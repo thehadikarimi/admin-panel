@@ -74,6 +74,15 @@ const useDeleteTicket = () => {
   return useMutation({ mutationFn });
 };
 
+const useSendTicket = (ticketId) => {
+  const mutationFn = (data) =>
+    api.post(`/tickets/${ticketId}/message`, data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+  return useMutation({ mutationFn });
+};
+
 export {
   useSignup,
   useLogin,
@@ -86,4 +95,5 @@ export {
   useUpdateCategory,
   useAddNewTicket,
   useDeleteTicket,
+  useSendTicket,
 };
