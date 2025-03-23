@@ -16,7 +16,7 @@ function AdminPage() {
             className="inline-flex items-center text-sm text-primary"
           >
             <span>مشاهده همه کاربران</span>
-            <SVGIcon name="chevronLeft" className="size-4 fill-primary" />
+            <SVGIcon name="chevronLeft" className="size-4 !fill-primary" />
           </Link>
         </div>
       </div>
@@ -29,7 +29,7 @@ function AdminPage() {
             className="inline-flex items-center text-sm text-primary"
           >
             <span>مشاهده همه تیکت ها</span>
-            <SVGIcon name="chevronLeft" className="size-4 fill-primary" />
+            <SVGIcon name="chevronLeft" className="size-4 !fill-primary" />
           </Link>
         </div>
       </div>

@@ -16,7 +16,7 @@ function DefaultModal() {
             {data.headText || "عنوان مودال"}
           </div>
           <button onClick={closeModal} className="flex">
-            <SVGIcon name="close" className="size-6 dark:fill-neutral-500" />
+            <SVGIcon name="close" className="size-6" />
           </button>
         </div>
         <div className="p-5">

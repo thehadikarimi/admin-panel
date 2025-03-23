@@ -19,13 +19,12 @@ function PaymentCard({ userId, year, payment, isPass, enablePaymentEditing }) {
   return (
     <div
       className={cn(
-        "flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-lg transition-colors duration-300 lg:h-24 lg:w-24",
+        "flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-lg lg:h-24 lg:w-24",
         payment.status === "paid" &&
           "bg-success text-neutral-500 [&_*]:fill-neutral-500",
         payment.status === "not-paid" &&
           "bg-error text-neutral-500 [&_*]:fill-neutral-500",
-        payment.status === "unknown" &&
-          "bg-neutral-500 text-black dark:bg-neutral-700 dark:text-neutral-500",
+        payment.status === "unknown" && "bg-neutral-500 dark:bg-neutral-700",
       )}
     >
       <p className="text-xs lg:text-sm">{year.label}</p>
@@ -34,10 +33,7 @@ function PaymentCard({ userId, year, payment, isPass, enablePaymentEditing }) {
         isPass && !isCurMonth() ? null : (
           <div className="flex">
             <button onClick={() => paymentModalToggle(true)}>
-              <SVGIcon
-                name="edit"
-                className="size-4 transition-colors duration-300 lg:size-5 dark:fill-neutral-500"
-              />
+              <SVGIcon name="edit" className="size-4 lg:size-5" />
             </button>
           </div>
         )

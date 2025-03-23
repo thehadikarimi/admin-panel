@@ -3,16 +3,17 @@
 import UserTableRow from "./UserTableRow";
 import Loading from "@/components/elements/Loading";
 
-import { useGetUsers } from "@/services/queries";
+import { useGetProfile, useGetUsers } from "@/services/queries";
 import { curMonth } from "@/utils/helper";
 
 function UsersTable({ qty = undefined }) {
   const { data, isPending } = useGetUsers();
+  const { data: profile } = useGetProfile();
 
   return (
     <div className="mt-5">
       <table className="w-full table-fixed whitespace-nowrap text-sm lg:text-base">
-        <thead className="h-14 bg-neutral-500 transition-colors duration-300 lg:h-16 dark:bg-neutral-900">
+        <thead className="h-14 bg-neutral-500 lg:h-16 dark:bg-neutral-900">
           <tr className="text-right text-neutral-900 *:px-3 dark:text-neutral-500">
             <th className="rounded-tr-lg">نام و نام خانوادگی</th>
             <th className="hidden sm:table-cell">شماره تلفن</th>
@@ -33,7 +34,12 @@ function UsersTable({ qty = undefined }) {
           ) : data?.data.users.length ? (
             data?.data.users
               .slice(0, qty)
-              .map((user) => <UserTableRow key={user._id} userData={user} />)
+              .map(
+                (user) =>
+                  user._id !== profile?.data.user._id && (
+                    <UserTableRow key={user._id} userData={user} />
+                  ),
+              )
           ) : (
             <tr className="relative h-14 *:px-3 lg:h-16">
               <td className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 text-neutral-900 dark:text-neutral-500">

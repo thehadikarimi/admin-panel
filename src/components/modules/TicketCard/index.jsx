@@ -24,7 +24,7 @@ function TicketCard({ data, userId }) {
           "flex-1 rounded-xl border p-2 sm:rounded-3xl sm:p-5",
           userId !== data.authorId
             ? "!rounded-tl-none border-neutral-500 dark:border-neutral-900"
-            : "!rounded-tr-none border-primary/30 bg-primary/10",
+            : "!rounded-tr-none border-primary/30 bg-primary/5 dark:bg-primary/10",
         )}
       >
         <p
@@ -33,10 +33,10 @@ function TicketCard({ data, userId }) {
         >
           {jalaliDate(data.createdAt, {
             year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
+            month: "numeric",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
           })}
         </p>
         <hr className="my-2 block border-neutral-500 dark:border-neutral-900" />
@@ -53,10 +53,7 @@ function TicketCard({ data, userId }) {
               target="_blank"
               className="flex items-center justify-center gap-3 rounded-full border border-neutral-500 p-2 text-xs sm:p-3 sm:text-sm dark:border-neutral-900"
             >
-              <SVGIcon
-                name="link"
-                className="size-5 sm:size-6 dark:fill-neutral-500"
-              />
+              <SVGIcon name="link" className="size-5 sm:size-6" />
               <span>مشاهده فایل</span>
             </Link>
           </div>

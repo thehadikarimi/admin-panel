@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import SVGIcon from "@/components/elements/SVGIcon";
@@ -14,37 +12,20 @@ import {
 import { useModal } from "@/context/ModalProvider";
 
 import { useDeleteUser } from "@/services/mutations";
-import { useGetProfile } from "@/services/queries";
 
 function UserTableRow({ userData }) {
   const queryClient = useQueryClient();
-  const router = useRouter();
 
-  const { data: profile } = useGetProfile();
   const { mutate } = useDeleteUser();
   const { openModal, closeModal } = useModal();
 
-  const successHandler = async (data) => {
-    if (data.data._id === profile.data.user._id) {
-      try {
-        const data = await signOut({
-          redirect: false,
-          callbackUrl: "/login",
-        });
-        setTimeout(() => router.push(data.url), 1000);
-      } catch (error) {
-        toast.error("خطا در برقراری ارتباط");
-      }
-    }
-
-    toast.success(data.data.message);
-    closeModal();
-    queryClient.invalidateQueries({ queryKey: ["users"] });
-  };
-
   const deleteHandler = () => {
     mutate(userData._id, {
-      onSuccess: (data) => successHandler(data),
+      onSuccess: (data) => {
+        toast.success(data.data.message);
+        closeModal();
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+      },
       onError: (error) => {
         toast.error(error.data.message || "خطا در برقراری ارتباط");
       },
@@ -52,43 +33,25 @@ function UserTableRow({ userData }) {
   };
 
   const modalHandler = () => {
-    let modalData = {
+    openModal({
       headText: "حذف حساب کاربری",
       buttonText: "حذف حساب",
+      bodyText:
+        "با حذف کردن حساب کاربری دیگر به اطلاعات آن دسترسی نخواهید داشت. آیا از حذف حساب اطمینان دارید؟",
       onAcceptHandler: deleteHandler,
-    };
-
-    if (profile.data.user._id === userData._id) {
-      modalData.bodyText =
-        "در حال حذف کردن حساب کاربری خود هستید. بعد از حذف حساب، دیگر به اطلاعات خود دسترسی نخواهید داشت. آیا از حذف حساب خود اطمینان دارید؟";
-    } else {
-      modalData.bodyText =
-        "با حذف کردن حساب کاربری دیگر به اطلاعات آن دسترسی نخواهید داشت. آیا از حذف حساب اطمینان دارید؟";
-    }
-
-    openModal(modalData);
+    });
   };
 
   const linkHandler = (isEdit = false) => {
-    switch (userData._id === profile?.data.user._id) {
-      case true:
-        if (isEdit) {
-          return "/admin/personal-details?edit=1";
-        } else {
-          return "/admin/personal-details";
-        }
-
-      case false:
-        if (isEdit) {
-          return `/admin/users/${userData._id}?edit=1`;
-        } else {
-          return `/admin/users/${userData._id}`;
-        }
+    if (isEdit) {
+      return `/admin/users/${userData._id}?edit=1`;
+    } else {
+      return `/admin/users/${userData._id}`;
     }
   };
 
   return (
-    <tr className="h-14 text-neutral-900 transition-colors duration-300 *:px-3 lg:h-16 dark:text-neutral-500">
+    <tr className="h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500">
       <td>
         <div className="flex flex-col">
           <span className="overflow-hidden text-ellipsis">{userData.name}</span>

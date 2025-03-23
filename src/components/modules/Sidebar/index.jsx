@@ -10,6 +10,8 @@ import SVGIcon from "@/components/elements/SVGIcon";
 
 import useToggle from "@/hooks/useToggle";
 
+import { cn } from "@/utils/helper";
+
 function Sidebar({ sidebarOpen, sidebarToggle }) {
   const [collapse, collapseToggle] = useToggle();
   const router = useRouter();
@@ -43,18 +45,22 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
   };
 
   return (
-    <div className="z-[2] border-neutral-500 transition-colors duration-300 lg:relative lg:border-l dark:border-neutral-700">
+    <div className="z-[3] border-neutral-500 lg:relative lg:border-l dark:border-neutral-700">
       <aside
-        className={`absolute right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md dark:bg-dark-500 ${collapse ? "lg:w-20" : "lg:w-64"} transition-all duration-300 lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none"}`}
+        className={cn(
+          "absolute right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md transition-[width,transform] duration-300 lg:static lg:translate-x-0 dark:bg-dark-500",
+          collapse ? "lg:w-20" : "lg:w-64",
+          sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none",
+        )}
       >
         <div className="relative flex h-20 items-center border-b border-neutral-500">
           <button
             onClick={collapseToggle}
-            className="absolute right-full mr-2 hidden rounded-full border border-neutral-500 bg-white outline-none transition-all duration-300 lg:block dark:border-neutral-900 dark:bg-dark-500"
+            className="absolute right-full mr-2 hidden rounded-full border border-neutral-500 bg-white outline-none lg:block dark:border-neutral-900 dark:bg-dark-500"
           >
             <SVGIcon
               name={collapse ? "chevronLeft" : "chevronRight"}
-              className="size-6 dark:fill-neutral-100"
+              className="size-6"
             />
           </button>
           <div className="w-full overflow-hidden">
@@ -66,7 +72,7 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
                 width={40}
                 height={40}
               />
-              <p className="text-nowrap font-bold text-black dark:text-neutral-100">
+              <p className="text-nowrap font-bold">
                 داشبورد <span className="text-primary">نکست</span>
               </p>
             </Link>
@@ -84,7 +90,7 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
                     >
                       <SVGIcon
                         name={item.icon}
-                        className="inline-block size-6 group-hover:fill-primary dark:fill-neutral-100"
+                        className="inline-block size-6 group-hover:fill-primary"
                       />
                       <span className="mr-5 inline-block text-nowrap text-black group-hover:text-primary dark:text-neutral-100">
                         {item.label}
@@ -101,7 +107,7 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
               >
                 <SVGIcon
                   name="logout"
-                  className="inline-block size-6 fill-error"
+                  className="inline-block size-6 !fill-error"
                 />
                 <span className="mr-5 inline-block text-nowrap text-error">
                   خروج از حساب کاربری
@@ -113,7 +119,10 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
       </aside>
       <div
         onClick={() => sidebarToggle(false)}
-        className={`fixed inset-0 left-0 top-0 z-10 bg-black/30 opacity-0 backdrop-blur-sm transition-all duration-300 lg:hidden ${sidebarOpen ? "visible opacity-100" : "invisible"}`}
+        className={cn(
+          "fixed inset-0 left-0 top-0 z-10 bg-black/30 opacity-0 backdrop-blur-sm transition-all duration-300 lg:hidden",
+          sidebarOpen ? "visible opacity-100" : "invisible",
+        )}
       ></div>
     </div>
   );

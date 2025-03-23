@@ -40,14 +40,14 @@ function DetailsPageHeader({ userData, enableDataEditing = true }) {
                   </span>
                   <SVGIcon
                     name="edit"
-                    className="size-4 fill-primary lg:size-5"
+                    className="size-4 !fill-primary lg:size-5"
                   />
                 </button>
               ) : null}
             </div>
           </div>
           <div className="mt-6">
-            <p className="text-sm font-medium text-black lg:text-base dark:text-neutral-500">
+            <p className="text-sm font-medium lg:text-base">
               مشخصات {role === "ADMIN" ? "مدیر" : "کاربر"}
             </p>
           </div>
@@ -55,9 +55,9 @@ function DetailsPageHeader({ userData, enableDataEditing = true }) {
             {userMeta.map((item, index) => (
               <div
                 key={index}
-                className="border-b border-neutral-500 transition-colors duration-300 last:border-b-0 sm:odd:border-l xl:border-b-0 dark:border-neutral-700 xl:[&:nth-child(-n_+_2)]:border-l sm:[&:nth-last-child(-n_+_2)]:border-b-0"
+                className="border-b border-neutral-500 last:border-b-0 sm:odd:border-l xl:border-b-0 dark:border-neutral-700 xl:[&:nth-child(-n_+_2)]:border-l sm:[&:nth-last-child(-n_+_2)]:border-b-0"
               >
-                <div className="p-3 text-sm text-black lg:text-base dark:text-neutral-500">
+                <div className="p-3 text-sm lg:text-base">
                   <p className="text-[.9em]">{item.title}</p>
                   <p className="mt-2 overflow-hidden text-ellipsis font-medium">
                     {item.content || "_"}

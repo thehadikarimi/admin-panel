@@ -11,7 +11,7 @@ function AddTicketModal({ userId, state, stateToggle }) {
             ارسال تیکت جدید
           </div>
           <button onClick={() => stateToggle(false)} className="flex">
-            <SVGIcon name="close" className="size-6 dark:fill-neutral-500" />
+            <SVGIcon name="close" className="size-6" />
           </button>
         </div>
         <div className="overflow-y-auto p-5">

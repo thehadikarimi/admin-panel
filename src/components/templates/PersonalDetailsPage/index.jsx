@@ -42,13 +42,13 @@ function PersonalDetailsPage() {
         <>
           <h2 className="title">اطلاعات حساب کاربری</h2>
           <div className="mt-5">
-            <div className="grid rounded-lg border border-neutral-500 transition-colors duration-300 sm:grid-cols-2 dark:border-neutral-700">
+            <div className="grid rounded-lg border border-neutral-500 sm:grid-cols-2 dark:border-neutral-700">
               {userMeta.map((item, index) => (
                 <div
                   key={index}
-                  className="border-b border-neutral-500 transition-colors duration-300 last:border-b-0 sm:odd:border-l dark:border-neutral-700 sm:[&:nth-last-child(-n_+_2)]:border-b-0"
+                  className="border-b border-neutral-500 last:border-b-0 sm:odd:border-l dark:border-neutral-700 sm:[&:nth-last-child(-n_+_2)]:border-b-0"
                 >
-                  <div className="p-3 text-sm text-black lg:text-base dark:text-neutral-500">
+                  <div className="p-3 text-sm lg:text-base">
                     <p className="text-[.9em]">{item.title}</p>
                     <p className="mt-2 overflow-hidden text-ellipsis font-medium">
                       {item.content || "_"}
@@ -66,7 +66,7 @@ function PersonalDetailsPage() {
               <span className="text-xs text-primary lg:text-sm">
                 ویرایش اطلاعات کاربری
               </span>
-              <SVGIcon name="edit" className="size-4 fill-primary lg:size-5" />
+              <SVGIcon name="edit" className="size-4 !fill-primary lg:size-5" />
             </button>
           </div>
         </>

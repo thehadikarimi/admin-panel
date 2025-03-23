@@ -20,7 +20,7 @@ function ControlledDatePicker({ control, name, title, defaultValue }) {
             <label className="pointer-events-none absolute bottom-full right-3 top-0 my-auto h-fit text-[.8em] text-neutral-700 transition-all peer-placeholder-shown:bottom-0 peer-placeholder-shown:text-[1em] peer-focus:bottom-full peer-focus:text-[.8em]">
               {title}
             </label>
-            <fieldset className="pointer-events-none absolute inset-[-5px_0px_0px] overflow-hidden rounded-lg border border-neutral-500 px-2 transition-all duration-300 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full dark:border-neutral-900">
+            <fieldset className="pointer-events-none absolute inset-[-5px_0px_0px] overflow-hidden rounded-lg border border-neutral-500 px-2 peer-placeholder-shown:*:max-w-0 peer-placeholder-shown:*:duration-75 peer-focus:*:max-w-full dark:border-neutral-900">
               <legend className="invisible float-none block w-auto max-w-full overflow-hidden whitespace-nowrap text-[.8em] leading-3 transition-[max-width]">
                 <span className="visible inline-block px-1 opacity-0">
                   {title}

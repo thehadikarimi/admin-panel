@@ -28,15 +28,10 @@ function TicketsPage() {
           <div className="flex items-center">
             <button
               onClick={() => addModalToggle(true)}
-              className="flex items-center gap-1 rounded-full border border-neutral-500 px-2 py-1 transition-colors duration-300 dark:border-neutral-700"
+              className="flex items-center gap-1 rounded-full border border-neutral-500 px-2 py-1 dark:border-neutral-700"
             >
-              <span className="text-xs text-black lg:text-sm dark:text-neutral-100">
-                ارسال تیکت جدید
-              </span>
-              <SVGIcon
-                name="add"
-                className="size-4 lg:size-5 dark:fill-neutral-500"
-              />
+              <span className="text-xs lg:text-sm">ارسال تیکت جدید</span>
+              <SVGIcon name="add" className="size-4 lg:size-5" />
             </button>
           </div>
         </div>

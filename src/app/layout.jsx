@@ -65,13 +65,13 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const cookie = await cookies();
-  const colorMode = cookie.get("color-theme")?.value;
+  const colorMode = cookie.get("color-theme")?.value || "dark";
   const className =
     colorMode === "dark" ? `${vazirmatn.className} dark` : vazirmatn.className;
 
   return (
     <html lang="fa" dir="rtl" className={className}>
-      <body className="bg-neutral-200 font-vazirmatn text-base font-normal text-black transition-colors duration-300 dark:bg-dark-700 dark:text-neutral-100">
+      <body className="bg-neutral-200 font-vazirmatn text-base font-normal text-black dark:bg-dark-700 dark:text-neutral-100">
         <ModalProvider>
           <TanstakQueryProvider>
             <Icons />

@@ -86,7 +86,6 @@ function EditUserForm({ userData, enableCategoryEditing = true }) {
               type="password"
               register={register}
               errors={errors}
-              required={true}
             />
           ) : null}
           <ControlledDatePicker

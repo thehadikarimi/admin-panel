@@ -68,10 +68,8 @@ function ProfileDropdown() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-medium text-black dark:text-neutral-100">
-                {name}
-              </span>
-              <span className="text-xs text-black dark:text-neutral-100">
+              <span className="text-sm font-medium">{name}</span>
+              <span className="text-xs">
                 {role === "ADMIN" ? "مدیر" : "کاربر"}
               </span>
             </div>
@@ -85,14 +83,9 @@ function ProfileDropdown() {
             >
               <div className="flex items-center px-4 py-3">
                 <div className="pl-4">
-                  <SVGIcon
-                    name="accountCircle_0"
-                    className="size-6 dark:fill-neutral-500"
-                  />
+                  <SVGIcon name="accountCircle_0" className="size-6" />
                 </div>
-                <span className="text-sm text-black dark:text-neutral-100">
-                  اطلاعات حساب کاربری
-                </span>
+                <span className="text-sm">اطلاعات حساب کاربری</span>
               </div>
             </Link>
           </li>
@@ -100,14 +93,9 @@ function ProfileDropdown() {
             <button className="block w-full" onClick={hadnleShowModal}>
               <div className="flex items-center px-4 py-3">
                 <div className="pl-4">
-                  <SVGIcon
-                    name="logout"
-                    className="size-6 dark:fill-neutral-500"
-                  />
+                  <SVGIcon name="logout" className="size-6" />
                 </div>
-                <span className="text-sm text-black dark:text-neutral-100">
-                  خروج از حساب کاربری
-                </span>
+                <span className="text-sm">خروج از حساب کاربری</span>
               </div>
             </button>
           </li>

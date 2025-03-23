@@ -3,15 +3,16 @@
 import Loading from "@/components/elements/Loading";
 import TicketsTableRow from "./TicketsTableRow";
 
-import { useGetUserTickets } from "@/services/queries";
+import { useGetProfile, useGetUserTickets } from "@/services/queries";
 
 function UserTicketsTable({ userId, qty = undefined }) {
   const { data, isPending } = useGetUserTickets(userId);
+  const { data: profile } = useGetProfile();
 
   return (
     <div className="mt-5">
       <table className="w-full table-fixed whitespace-nowrap text-sm lg:text-base">
-        <thead className="h-14 bg-neutral-500 transition-colors duration-300 lg:h-16 dark:bg-neutral-900">
+        <thead className="h-14 bg-neutral-500 lg:h-16 dark:bg-neutral-900">
           <tr className="text-right text-neutral-900 *:px-3 dark:text-neutral-500">
             <th className="rounded-tr-lg">تاریخ</th>
             <th className="hidden sm:table-cell" colSpan={2}>
@@ -32,7 +33,12 @@ function UserTicketsTable({ userId, qty = undefined }) {
             data?.data.tickets
               .slice(0, qty)
               .map((ticket) => (
-                <TicketsTableRow key={ticket._id} ticketData={ticket} />
+                <TicketsTableRow
+                  key={ticket._id}
+                  ticketData={ticket}
+                  userId={userId}
+                  profile={profile.data.user}
+                />
               ))
           ) : (
             <tr className="relative h-14 *:px-3 lg:h-16">

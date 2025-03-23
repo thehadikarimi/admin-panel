@@ -11,7 +11,7 @@ function CategoriesTable() {
   return (
     <div className="mt-5">
       <table className="w-full table-fixed whitespace-nowrap text-sm lg:text-base">
-        <thead className="h-14 bg-neutral-500 transition-colors duration-300 lg:h-16 dark:bg-neutral-900">
+        <thead className="h-14 bg-neutral-500 lg:h-16 dark:bg-neutral-900">
           <tr className="text-right text-neutral-900 *:px-3 dark:text-neutral-500">
             <th className="rounded-tr-lg">نام دسته بندی</th>
             <th className="hidden sm:table-cell">تعداد کاربران</th>

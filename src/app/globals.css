@@ -4,7 +4,7 @@
 
 @layer components {
   .c-container {
-    @apply w-full rounded-lg bg-white p-5 shadow-md transition-colors duration-300 dark:bg-dark-500;
+    @apply w-full rounded-lg bg-white p-5 shadow-md dark:bg-dark-500;
   }
 
   .title {

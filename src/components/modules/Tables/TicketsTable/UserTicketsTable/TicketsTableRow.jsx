@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 import {
@@ -7,11 +9,42 @@ import {
   DropdownToggle,
 } from "@/components/modules/Dropdown";
 
+import { useModal } from "@/context/ModalProvider";
+
+import { useDeleteTicket } from "@/services/mutations";
 import { jalaliDate } from "@/utils/helper";
 
-function TicketsTableRow({ ticketData }) {
+function TicketsTableRow({ ticketData, userId, profile }) {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useDeleteTicket();
+  const { openModal, closeModal } = useModal();
+
+  const deleteHandler = () => {
+    mutate(ticketData._id, {
+      onSuccess: (data) => {
+        toast.success(data.data.message);
+        closeModal();
+        queryClient.invalidateQueries({ queryKey: ["user-tickets", userId] });
+      },
+      onError: (error) => {
+        toast.error(error.data.message || "خطا در برقراری ارتباط");
+      },
+    });
+  };
+
+  const modalHandler = () => {
+    openModal({
+      headText: "حذف تیکت",
+      buttonText: "حذف تیکت",
+      bodyText:
+        "بعد از حذف تیکت دیگر به اطلاعات آن دسترسی نخواهید داشت. آیا مطمئن هستید؟",
+      onAcceptHandler: deleteHandler,
+    });
+  };
+
   return (
-    <tr className="h-14 text-neutral-900 transition-colors duration-300 *:px-3 lg:h-16 dark:text-neutral-500">
+    <tr className="h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500">
       <td>{jalaliDate(ticketData.updatedAt) || "_"}</td>
       <td
         className="hidden overflow-hidden text-ellipsis sm:table-cell"
@@ -26,21 +59,31 @@ function TicketsTableRow({ ticketData }) {
         <div className="flex items-center justify-center">
           <Dropdown className="flex">
             <DropdownToggle>
-              <SVGIcon
-                name="moreVert"
-                className="size-6 dark:fill-neutral-500"
-              />
+              <SVGIcon name="moreVert" className="size-6" />
             </DropdownToggle>
             <DropdownContent className="top-full z-[2] mt-2 w-36 rounded-lg border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-dark-500">
               <ul className="p-2">
                 <li>
                   <Link
-                    href={`/profile/tickets/${ticketData._id}`}
+                    href={
+                      (profile.role === "ADMIN" ? "/admin" : "/profile") +
+                      `/tickets/${ticketData._id}`
+                    }
                     className="block rounded p-1.5 text-xs hover:bg-neutral-500 lg:text-sm dark:hover:bg-neutral-700"
                   >
                     مشاهده
                   </Link>
                 </li>
+                {profile.role === "ADMIN" ? (
+                  <li>
+                    <button
+                      onClick={modalHandler}
+                      className="block w-full rounded p-1.5 text-right text-xs hover:bg-neutral-500 lg:text-sm dark:hover:bg-neutral-700"
+                    >
+                      حذف
+                    </button>
+                  </li>
+                ) : null}
               </ul>
             </DropdownContent>
           </Dropdown>

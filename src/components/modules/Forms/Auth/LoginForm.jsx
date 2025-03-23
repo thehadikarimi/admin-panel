@@ -37,7 +37,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <h2 className="text-center font-bold text-black dark:text-neutral-100">
+      <h2 className="text-center font-bold">
         ورود به داشبورد نکست
       </h2>
       <div className="mt-8">
@@ -46,7 +46,6 @@ function LoginForm() {
             name="email"
             title="ایمیل"
             register={register}
-            required={true}
             errors={errors}
           />
           <TextField
@@ -54,7 +53,6 @@ function LoginForm() {
             title="گذرواژه"
             type="password"
             register={register}
-            required={true}
             errors={errors}
           />
         </div>
@@ -63,7 +61,7 @@ function LoginForm() {
           type="submit"
           className="mt-5 flex w-full items-center justify-center rounded-lg bg-primary py-3.5 text-sm leading-6 text-white lg:py-4 lg:text-base"
         >
-          {isPending ? <Loading className="fill-neutral-100" /> : "ورود"}
+          {isPending ? <Loading className="fill-neutral-500" /> : "ورود"}
         </button>
       </div>
     </form>

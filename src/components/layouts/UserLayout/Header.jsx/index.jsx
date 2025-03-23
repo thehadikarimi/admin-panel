@@ -39,11 +39,11 @@ function Header() {
   };
 
   return (
-    <header className="h-20 w-full border-b border-white bg-white px-3 shadow-md transition-all duration-300 lg:px-5 dark:border-neutral-700 dark:bg-dark-500">
+    <header className="sticky top-0 z-[2] h-20 w-full border-b border-white bg-white px-3 shadow-md lg:px-5 dark:border-neutral-700 dark:bg-dark-500">
       <div>
         <aside
           className={cn(
-            "absolute right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md transition-all duration-300 dark:bg-dark-500",
+            "fixed right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md transition-transform duration-300 dark:bg-dark-500",
             sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none",
           )}
         >
@@ -57,7 +57,7 @@ function Header() {
                   width={40}
                   height={40}
                 />
-                <p className="text-nowrap font-bold text-black dark:text-neutral-100">
+                <p className="text-nowrap font-bold">
                   داشبورد <span className="text-primary">نکست</span>
                 </p>
               </Link>
@@ -74,9 +74,9 @@ function Header() {
                     >
                       <SVGIcon
                         name="dashboard"
-                        className="inline-block size-6 group-hover:fill-primary dark:fill-neutral-100"
+                        className="inline-block size-6 group-hover:fill-primary"
                       />
-                      <span className="mr-5 inline-block text-nowrap text-black group-hover:text-primary dark:text-neutral-100">
+                      <span className="mr-5 inline-block text-nowrap group-hover:text-primary">
                         صفحه اصلی
                       </span>
                     </Link>
@@ -88,9 +88,9 @@ function Header() {
                     >
                       <SVGIcon
                         name="sms"
-                        className="inline-block size-6 group-hover:fill-primary dark:fill-neutral-100"
+                        className="inline-block size-6 group-hover:fill-primary"
                       />
-                      <span className="mr-5 inline-block text-nowrap text-black group-hover:text-primary dark:text-neutral-100">
+                      <span className="mr-5 inline-block text-nowrap group-hover:text-primary">
                         تیکت ها
                       </span>
                     </Link>
@@ -104,7 +104,7 @@ function Header() {
                 >
                   <SVGIcon
                     name="logout"
-                    className="inline-block size-6 fill-error"
+                    className="inline-block size-6 !fill-error"
                   />
                   <span className="mr-5 inline-block text-nowrap text-error">
                     خروج از حساب کاربری
@@ -124,7 +124,7 @@ function Header() {
       </div>
       <div className="flex h-full items-center justify-between">
         <button onClick={() => sidebarToggle(true)} className="md:hidden">
-          <SVGIcon name="menu" className="size-6 dark:fill-neutral-500" />
+          <SVGIcon name="menu" className="size-6" />
         </button>
         <div className="hidden items-center gap-16 md:flex">
           <div>
@@ -136,7 +136,7 @@ function Header() {
                 width={40}
                 height={40}
               />
-              <h1 className="text-nowrap font-bold text-black dark:text-neutral-100">
+              <h1 className="text-nowrap font-bold">
                 داشبورد <span className="text-primary">نکست</span>
               </h1>
             </Link>
@@ -144,18 +144,12 @@ function Header() {
           <div>
             <ul className="flex items-center gap-8">
               <li>
-                <Link
-                  href="/profile"
-                  className="text-black transition-colors duration-300 hover:text-primary dark:text-neutral-500"
-                >
+                <Link href="/profile" className="hover:text-primary">
                   صفحه اصلی
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/profile/tickets"
-                  className="text-black transition-colors duration-300 hover:text-primary dark:text-neutral-500"
-                >
+                <Link href="/profile/tickets" className="hover:text-primary">
                   تیکت ها
                 </Link>
               </li>

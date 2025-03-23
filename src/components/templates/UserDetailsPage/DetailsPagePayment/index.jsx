@@ -40,7 +40,7 @@ function DetailsPagePayment({ userData, enablePaymentEditing = true }) {
         </h2>
         <div className="flex w-1/2 items-center justify-end whitespace-nowrap">
           <Select
-            className="text-sm transition-colors duration-300 *:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-colors *:!duration-300 lg:text-base dark:*:!bg-dark-500 dark:*:!text-neutral-500"
+            className="text-sm !transition-none *:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-none lg:text-base dark:*:!bg-dark-500 dark:*:!text-neutral-500"
             classNamePrefix="year-select-options"
             value={year}
             options={options}
