@@ -8,6 +8,7 @@ import { useModal } from "@/context/ModalProvider";
 
 import SVGIcon from "@/components/elements/SVGIcon";
 
+import { useGetTickets } from "@/services/queries";
 import useToggle from "@/hooks/useToggle";
 
 import { cn } from "@/utils/helper";
@@ -16,13 +17,20 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
   const [collapse, collapseToggle] = useToggle();
   const router = useRouter();
 
+  const { data } = useGetTickets();
+  const badgesIcon = data?.data.tickets.find(
+    (ticket) => ticket.status === "UNREAD",
+  )
+    ? true
+    : false;
+
   const { openModal, closeModal } = useModal();
 
   const menuItem = [
     { icon: "dashboard", label: "داشبورد", route: "/admin" },
     { icon: "category_0", label: "دسته بندی", route: "/admin/category" },
     { icon: "group", label: "کاربران", route: "/admin/users" },
-    { icon: "sms", label: "تیکت ها", route: "/admin/tickets" },
+    { icon: "sms", label: "تیکت ها", route: "/admin/tickets", badgesIcon },
   ];
 
   const signoutHandler = async () => {
@@ -86,7 +94,7 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
                   <li key={index}>
                     <Link
                       href={item.route}
-                      className="group block text-nowrap p-2"
+                      className="group relative block text-nowrap p-2"
                     >
                       <SVGIcon
                         name={item.icon}
@@ -95,6 +103,12 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
                       <span className="mr-5 inline-block text-nowrap text-black group-hover:text-primary dark:text-neutral-100">
                         {item.label}
                       </span>
+                      {item.badgesIcon ? (
+                        <span className="absolute right-[6px] top-[6px] flex h-3 w-3 items-center justify-center">
+                          <span className="absolute inline-flex h-4/5 w-4/5 animate-ping rounded-full bg-error"></span>
+                          <span className="h-full w-full rounded-full border-2 border-white bg-error dark:border-dark-500"></span>
+                        </span>
+                      ) : null}
                     </Link>
                   </li>
                 ))}

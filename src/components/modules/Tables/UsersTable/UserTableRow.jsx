@@ -12,6 +12,7 @@ import {
 import { useModal } from "@/context/ModalProvider";
 
 import { useDeleteUser } from "@/services/mutations";
+import { cn, curMonth, curYear } from "@/utils/helper";
 
 function UserTableRow({ userData }) {
   const queryClient = useQueryClient();
@@ -25,6 +26,7 @@ function UserTableRow({ userData }) {
         toast.success(data.data.message);
         closeModal();
         queryClient.invalidateQueries({ queryKey: ["users"] });
+        queryClient.invalidateQueries({ queryKey: ["tickets"] });
       },
       onError: (error) => {
         toast.error(error.data.message || "خطا در برقراری ارتباط");
@@ -50,8 +52,36 @@ function UserTableRow({ userData }) {
     }
   };
 
+  const checkUserPayment = () => {
+    const yearPayment = userData.payments.find(
+      (payment) => payment.year === curYear(),
+    );
+
+    if (yearPayment) {
+      const monthPayment = yearPayment.data.find(
+        (item) => item.month === curMonth("long"),
+      );
+
+      if (monthPayment.status === "paid") {
+        return "پرداخت شده";
+      }
+
+      if (monthPayment.status === "not-paid") {
+        return "پرداخت نشده";
+      }
+    }
+
+    return "نامشخص";
+  };
+
   return (
-    <tr className="h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500">
+    <tr
+      className={cn(
+        "h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500 [&:last-child_>_td:first-child]:rounded-br-lg [&:last-child_>_td:last-child]:rounded-bl-lg",
+        checkUserPayment() === "پرداخت شده" && "bg-success/25",
+        checkUserPayment() === "پرداخت نشده" && "bg-error/25",
+      )}
+    >
       <td>
         <div className="flex flex-col">
           <span className="overflow-hidden text-ellipsis">{userData.name}</span>
@@ -62,7 +92,7 @@ function UserTableRow({ userData }) {
       </td>
       <td className="hidden sm:table-cell">{userData.phoneNumber || "_"}</td>
       <td className="hidden xl:table-cell">{userData.category || "_"}</td>
-      <td className="hidden md:table-cell">آخرین پرداختی</td>
+      <td className="hidden md:table-cell">{checkUserPayment()}</td>
       <td>
         <div className="flex items-center justify-center">
           <Dropdown className="flex">

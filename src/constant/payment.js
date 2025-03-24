@@ -1,5 +1,4 @@
 import { curYear } from "@/utils/helper";
-import { p2e } from "@/utils/replaceNumber";
 
 const months = [
   "فروردین",
@@ -16,15 +15,9 @@ const months = [
   "اسفند",
 ];
 
-export const userDefaultPayment = {
-  lastPayment: {
-    year: "",
-    month: "",
+export const userDefaultPayment = [
+  {
+    year: curYear(),
+    data: months.map((month) => ({ month, status: "unknown" })),
   },
-  allPayments: [
-    {
-      year: p2e(curYear()),
-      data: months.map((month) => ({ month, status: "unknown" })),
-    },
-  ],
-};
+];

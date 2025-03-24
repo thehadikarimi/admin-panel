@@ -24,7 +24,7 @@ function AddUserForm({ stateToggle }) {
   const { mutate, isPending } = useAddUser();
 
   const submitHandler = (data) => {
-    data.payment = userDefaultPayment;
+    data.payments = userDefaultPayment;
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);

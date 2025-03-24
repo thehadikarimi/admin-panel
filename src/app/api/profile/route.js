@@ -45,7 +45,7 @@ export async function GET() {
     phoneNumber: user.phoneNumber,
     category: user.category,
     birthDate: user.birthDate,
-    payment: user.payment,
+    payments: user.payments,
   };
 
   return Response.json(

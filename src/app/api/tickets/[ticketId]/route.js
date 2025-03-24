@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { isValidObjectId } from "mongoose";
 
 import Ticket from "@/models/Ticket";
+import User from "@/models/User";
 
 import { DB_IsConnected } from "@/utils/DB";
 
@@ -39,6 +40,13 @@ export async function GET(request, { params }) {
       },
       { status: 404 },
     );
+  }
+
+  const user = await User.findOne({ email: session.user.email });
+
+  if (user.role === "ADMIN") {
+    await Ticket.updateOne({ _id: ticketId }, { $set: { status: "READ" } });
+    ticket.status = "READ";
   }
 
   const filterTicketData = {

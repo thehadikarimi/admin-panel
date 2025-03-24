@@ -19,7 +19,7 @@ function SignupForm({ setIsLogin }) {
   const { mutate, isPending } = useSignup();
 
   const submitHandler = (data) => {
-    data.payment = userDefaultPayment;
+    data.payments = userDefaultPayment;
     mutate(data, {
       onSuccess: (data) => {
         toast.success(data.data.message);

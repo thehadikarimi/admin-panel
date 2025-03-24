@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { isValidObjectId } from "mongoose";
 
 import Ticket from "@/models/Ticket";
+import User from "@/models/User";
 
 import { DB_IsConnected } from "@/utils/DB";
 import { uploadToMega } from "@/utils/mega";
@@ -62,6 +63,12 @@ export async function POST(request, { params }) {
   if (image) {
     const buffer = Buffer.from(await image.arrayBuffer());
     imageLink = await uploadToMega([image, buffer], "admin-panel");
+  }
+
+  const user = await User.findOne({ _id: ticket.userId });
+
+  if (user.role !== "ADMIN") {
+    ticket.status = "UNREAD";
   }
 
   ticket.messages.push({

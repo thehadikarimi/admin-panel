@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { isValidObjectId } from "mongoose";
 
 import User from "@/models/User";
+import Category from "@/models/Category";
 
 import { DB_IsConnected } from "@/utils/DB";
 
@@ -49,7 +50,7 @@ export async function GET(request, { params }) {
     category: user.category,
     phoneNumber: user.phoneNumber,
     birthDate: user.birthDate,
-    payment: user.payment,
+    payments: user.payments,
   };
 
   return Response.json(
@@ -105,6 +106,18 @@ export async function PATCH(request, { params }) {
     updateMonthPayment,
   } = body;
 
+  if (category && category !== user.category) {
+    if (user.category) {
+      const oldCategory = await Category.findOne({ name: user.category });
+      oldCategory.userQuantity--;
+      oldCategory.save();
+    }
+
+    const newCategory = await Category.findOne({ name: category });
+    newCategory.userQuantity++;
+    newCategory.save();
+  }
+
   user.name = name || user.name;
   user.email = email || user.email;
   user.password = password || user.password;
@@ -112,7 +125,7 @@ export async function PATCH(request, { params }) {
   user.birthDate = birthDate || user.birthDate;
   user.phoneNumber = phoneNumber || user.phoneNumber;
 
-  user.payment.allPayments.map((payment) => {
+  user.payments.map((payment) => {
     payment.data.map((month) => {
       if (month._id.toString() === updateMonthPayment?._id) {
         month.status = updateMonthPayment.status;

@@ -21,23 +21,17 @@ const userSchema = new Schema({
     type: Date,
     default: () => Date.now(),
   },
-  payment: {
-    lastPayment: {
+  payments: [
+    {
       year: String,
-      month: String,
+      data: [
+        {
+          month: String,
+          status: String,
+        },
+      ],
     },
-    allPayments: [
-      {
-        year: String,
-        data: [
-          {
-            month: String,
-            status: String,
-          },
-        ],
-      },
-    ],
-  },
+  ],
 });
 
 userSchema.pre("save", function (next) {

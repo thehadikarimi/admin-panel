@@ -2,9 +2,11 @@ import { getServerSession } from "next-auth";
 
 import User from "@/models/User";
 import Category from "@/models/Category";
+import Ticket from "@/models/Ticket";
 
 import { DB_IsConnected } from "@/utils/DB";
 import { hashPassword } from "@/utils/password";
+import { deleteFromMega } from "@/utils/mega";
 
 export async function GET() {
   const isConnected = await DB_IsConnected();
@@ -39,14 +41,16 @@ export async function GET() {
     );
   }
 
-  const filterUsersData = users.map((user) => ({
-    _id: user._id,
-    role: user.role,
-    name: user.name,
-    category: user.category,
-    phoneNumber: user.phoneNumber,
-    payment: user.payment,
-  }));
+  const filterUsersData = users
+    .filter((user) => user.email !== session.user.email)
+    .map((user) => ({
+      _id: user._id,
+      role: user.role,
+      name: user.name,
+      category: user.category,
+      phoneNumber: user.phoneNumber,
+      payments: user.payments,
+    }));
 
   return Response.json(
     { status: 200, data: { users: filterUsersData } },
@@ -96,6 +100,16 @@ export async function DELETE(request) {
     oldCategory.save();
   }
 
+  const tickets = await Ticket.find({ userId: user._id });
+
+  const filesName = [];
+  tickets.map((ticket) =>
+    ticket.messages.map((message) => filesName.push(message.image.name)),
+  );
+  
+  await Ticket.deleteMany({ userId: user._id });
+  await deleteFromMega(filesName, "admin-panel");
+
   await User.deleteOne({ _id });
 
   return Response.json(
@@ -129,7 +143,7 @@ export async function POST(request) {
   }
 
   const body = await request.json();
-  const { name, email, password, phoneNumber, category, payment } = body;
+  const { name, email, password, phoneNumber, category, payments } = body;
 
   if (!name) {
     return Response.json(
@@ -179,7 +193,7 @@ export async function POST(request) {
     password: hashedPassword,
     phoneNumber,
     category,
-    payment,
+    payments,
   });
 
   if (category) {

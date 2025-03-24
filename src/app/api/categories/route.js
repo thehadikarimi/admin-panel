@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 
 import Category from "@/models/Category";
+import User from "@/models/User";
 
 import { DB_IsConnected } from "@/utils/DB";
 
@@ -143,6 +144,12 @@ export async function DELETE(request) {
       { status: 422 },
     );
   }
+
+  const category = await Category.findOne({ _id });
+  await User.updateMany(
+    { category: category.name },
+    { $set: { category: "" } },
+  );
 
   await Category.deleteOne({ _id });
 

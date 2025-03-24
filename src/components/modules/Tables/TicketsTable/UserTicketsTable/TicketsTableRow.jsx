@@ -12,7 +12,7 @@ import {
 import { useModal } from "@/context/ModalProvider";
 
 import { useDeleteTicket } from "@/services/mutations";
-import { jalaliDate } from "@/utils/helper";
+import { cn, jalaliDate } from "@/utils/helper";
 
 function TicketsTableRow({ ticketData, userId, profile }) {
   const queryClient = useQueryClient();
@@ -44,7 +44,12 @@ function TicketsTableRow({ ticketData, userId, profile }) {
   };
 
   return (
-    <tr className="h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500">
+    <tr
+      className={cn(
+        "h-14 text-neutral-900 *:px-3 lg:h-16 dark:text-neutral-500",
+        ticketData.status === "READ" && "[&_td:not(:last-child)]:opacity-50",
+      )}
+    >
       <td>{jalaliDate(ticketData.updatedAt) || "_"}</td>
       <td
         className="hidden overflow-hidden text-ellipsis sm:table-cell"
@@ -59,7 +64,13 @@ function TicketsTableRow({ ticketData, userId, profile }) {
         <div className="flex items-center justify-center">
           <Dropdown className="flex">
             <DropdownToggle>
-              <SVGIcon name="moreVert" className="size-6" />
+              <SVGIcon
+                name="moreVert"
+                className={cn(
+                  "size-6",
+                  ticketData.status === "READ" && "opacity-50",
+                )}
+              />
             </DropdownToggle>
             <DropdownContent className="top-full z-[2] mt-2 w-36 rounded-lg border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-dark-500">
               <ul className="p-2">

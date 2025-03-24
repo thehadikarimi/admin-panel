@@ -3,12 +3,11 @@
 import UserTableRow from "./UserTableRow";
 import Loading from "@/components/elements/Loading";
 
-import { useGetProfile, useGetUsers } from "@/services/queries";
+import { useGetUsers } from "@/services/queries";
 import { curMonth } from "@/utils/helper";
 
 function UsersTable({ qty = undefined }) {
   const { data, isPending } = useGetUsers();
-  const { data: profile } = useGetProfile();
 
   return (
     <div className="mt-5">
@@ -31,15 +30,10 @@ function UsersTable({ qty = undefined }) {
                 <Loading />
               </td>
             </tr>
-          ) : data?.data.users.length ? (
-            data?.data.users
+          ) : data.data.users.length ? (
+            data.data.users
               .slice(0, qty)
-              .map(
-                (user) =>
-                  user._id !== profile?.data.user._id && (
-                    <UserTableRow key={user._id} userData={user} />
-                  ),
-              )
+              .map((user) => <UserTableRow key={user._id} userData={user} />)
           ) : (
             <tr className="relative h-14 *:px-3 lg:h-16">
               <td className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 text-neutral-900 dark:text-neutral-500">

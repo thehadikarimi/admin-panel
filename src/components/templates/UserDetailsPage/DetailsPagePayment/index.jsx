@@ -6,31 +6,19 @@ import { FreeMode } from "swiper/modules";
 
 import PaymentCard from "@/components/modules/PaymentCard";
 
-import { curMonth } from "@/utils/helper";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "./DetailsPagePayment.css";
 
 function DetailsPagePayment({ userData, enablePaymentEditing = true }) {
-  const {
-    payment: { lastPayment, allPayments },
-  } = userData;
+  const { payments } = userData;
 
-  const options = allPayments.map((payment, index) => ({
+  const options = payments.map((payment, index) => ({
     value: index,
     label: payment.year,
   }));
 
   const [year, setYear] = useState(options[options.length - 1]);
-
-  let isPass = false;
-
-  const checkPassMonth = (month) => {
-    if (+lastPayment.year >= +year.label) {
-      if (month === curMonth("long")) isPass = true;
-    }
-  };
 
   return (
     <div className="c-container">
@@ -55,17 +43,16 @@ function DetailsPagePayment({ userData, enablePaymentEditing = true }) {
           freeMode={true}
           modules={[FreeMode]}
         >
-          {allPayments
+          {payments
             .find((payment) => payment.year === year.label)
-            .data.map((payment) => {
-              checkPassMonth(payment.month);
+            .data.map((payment, index) => {
+              payment.monthIndex = index + 1;
               return (
                 <SwiperSlide key={payment._id} className="!w-fit last:!ml-0">
                   <PaymentCard
                     userId={userData._id}
                     year={year}
                     payment={payment}
-                    isPass={isPass}
                     enablePaymentEditing={enablePaymentEditing}
                   />
                 </SwiperSlide>
