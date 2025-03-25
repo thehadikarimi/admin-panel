@@ -83,6 +83,13 @@ const useSendTicket = (ticketId) => {
   return useMutation({ mutationFn });
 };
 
+const useGetSearch = () => {
+  const mutationFn = (data) =>
+    api.post("/search", data.data, { signal: data.controller.signal });
+
+  return useMutation({ mutationFn });
+};
+
 export {
   useSignup,
   useLogin,
@@ -96,4 +103,5 @@ export {
   useAddNewTicket,
   useDeleteTicket,
   useSendTicket,
+  useGetSearch,
 };
