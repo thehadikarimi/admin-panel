@@ -19,6 +19,9 @@ function SignupForm({ setIsLogin }) {
   const { mutate, isPending } = useSignup();
 
   const submitHandler = (data) => {
+    return toast.error(
+      "در حال حاضر امکان ایجاد حساب، فقط توسط مدیر سایت امکان پذیر است.",
+    );
     data.payments = userDefaultPayment;
     mutate(data, {
       onSuccess: (data) => {

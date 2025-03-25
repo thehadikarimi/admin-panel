@@ -49,7 +49,7 @@ function Header() {
         >
           <div className="relative flex h-20 items-center border-b border-neutral-500">
             <div className="w-full overflow-hidden">
-              <Link href="/admin" className="flex items-center gap-3">
+              <Link href="/profile" className="flex items-center gap-3">
                 <Image
                   className="size-10 dark:invert"
                   src="/nextjs.svg"

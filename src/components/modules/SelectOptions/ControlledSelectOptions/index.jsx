@@ -46,7 +46,7 @@ function ControlledSelectOptions({
               <input className="w-full border-none bg-transparent px-3 py-4 outline-none" />
             ) : (
               <Select
-                className="*:!border-none *:!bg-white *:!text-black *:!outline-none dark:*:!bg-dark-500 dark:*:!text-neutral-500"
+                className="!transition-none *:!border-none *:!bg-white *:!text-black *:!outline-none *:!transition-none dark:*:!bg-dark-500 dark:*:!text-neutral-500"
                 classNamePrefix="controlled-select-options"
                 placeholder="انتخاب کنید"
                 defaultValue={options?.find(

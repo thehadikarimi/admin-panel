@@ -57,10 +57,10 @@ function TicketsTableRow({ ticketData }) {
       >
         {ticketData.title || "_"}
       </td>
-      <td className="hidden md:table-cell">
+      <td className="hidden sm:table-cell">
         {jalaliDate(ticketData.updatedAt) || "_"}
       </td>
-      <td className="hidden md:table-cell">
+      <td className="hidden sm:table-cell">
         {ticketData.status === "READ" ? "خوانده شده" : "خوانده نشده"}
       </td>
       <td>

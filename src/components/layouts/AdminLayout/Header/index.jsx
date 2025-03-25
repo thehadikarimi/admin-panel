@@ -28,10 +28,10 @@ function Header({ scroll, sidebarToggle }) {
         isMobile && collapse ? "h-[4.5rem]" : "h-32",
       )}
     >
-      <div className="flex flex-col gap-4 py-4 lg:flex-row-reverse lg:items-center lg:justify-between">
-        <div className="relative z-[3] flex items-center justify-between bg-white dark:bg-dark-500">
+      <div className="pointer-events-none flex flex-col gap-4 py-4 lg:flex-row-reverse lg:items-center lg:justify-between">
+        <div className="pointer-events-auto relative z-[3] flex items-center justify-between bg-white dark:bg-dark-500">
           <button onClick={() => sidebarToggle(true)} className="lg:hidden">
-            <SVGIcon name="menu" className="size-6 " />
+            <SVGIcon name="menu" className="size-6" />
           </button>
           <div className="lg:hidden">
             <Link href="/admin" className="flex items-center gap-3">
@@ -42,7 +42,7 @@ function Header({ scroll, sidebarToggle }) {
                 width={40}
                 height={40}
               />
-              <h1 className="text-nowrap font-bold ">
+              <h1 className="text-nowrap font-bold">
                 داشبورد <span className="text-primary">نکست</span>
               </h1>
             </Link>
@@ -51,7 +51,7 @@ function Header({ scroll, sidebarToggle }) {
         </div>
         <div
           className={cn(
-            "flex items-center justify-between gap-2 transition-transform duration-[330ms] lg:flex-grow lg:gap-8",
+            "pointer-events-auto flex items-center justify-between gap-2 transition-transform duration-[330ms] lg:flex-grow lg:gap-8",
             isMobile && collapse ? "-translate-y-14" : "translate-y-0",
           )}
         >

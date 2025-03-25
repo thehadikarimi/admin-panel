@@ -15,7 +15,7 @@ function AdminLayout({ children }) {
   const scroll = useScroll(scrollEleRef);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       <Sidebar sidebarOpen={sidebarOpen} sidebarToggle={sidebarToggle} />
       <div
         ref={scrollEleRef}
