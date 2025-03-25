@@ -7,6 +7,8 @@ import Ticket from "@/models/Ticket";
 import { DB_IsConnected } from "@/utils/DB";
 import { hashPassword } from "@/utils/password";
 import { deleteFromMega } from "@/utils/mega";
+import { curYear } from "@/utils/helper";
+import { userDefaultYearPayment } from "@/constant/payment";
 
 export async function GET() {
   const isConnected = await DB_IsConnected();
@@ -40,6 +42,24 @@ export async function GET() {
       { status: 404 },
     );
   }
+
+  users.forEach(async (user) => {
+    if (user.role === "USER") {
+      const length = user.payments.length;
+
+      if (user.payments[length - 1].year < curYear()) {
+        const newPayment = user.payments;
+
+        newPayment.push(userDefaultYearPayment);
+        user.payments = newPayment;
+
+        await User.updateOne(
+          { _id: user._id },
+          { $set: { payments: newPayment } },
+        );
+      }
+    }
+  });
 
   const filterUsersData = users
     .filter((user) => user.email !== session.user.email)
@@ -106,7 +126,7 @@ export async function DELETE(request) {
   tickets.map((ticket) =>
     ticket.messages.map((message) => filesName.push(message.image.name)),
   );
-  
+
   await Ticket.deleteMany({ userId: user._id });
   await deleteFromMega(filesName, "admin-panel");
 

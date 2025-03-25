@@ -5,6 +5,8 @@ import User from "@/models/User";
 import Category from "@/models/Category";
 
 import { DB_IsConnected } from "@/utils/DB";
+import { curYear } from "@/utils/helper";
+import { userDefaultYearPayment } from "@/constant/payment";
 
 export async function GET(request, { params }) {
   const isConnected = await DB_IsConnected();
@@ -40,6 +42,19 @@ export async function GET(request, { params }) {
       },
       { status: 404 },
     );
+  }
+
+  if (user.role === "USER") {
+    const length = user.payments.length;
+
+    if (user.payments[length - 1].year < curYear()) {
+      const newPayment = user.payments;
+
+      newPayment.push(userDefaultYearPayment);
+      user.payments = newPayment;
+
+      await User.updateOne({ _id: userId }, { $set: { payments: newPayment } });
+    }
   }
 
   const filterUserData = {

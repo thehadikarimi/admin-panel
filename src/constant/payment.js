@@ -21,3 +21,8 @@ export const userDefaultPayment = [
     data: months.map((month) => ({ month, status: "unknown" })),
   },
 ];
+
+export const userDefaultYearPayment = {
+  year: curYear(),
+  data: months.map((month) => ({ month, status: "unknown" })),
+};
