@@ -58,7 +58,7 @@ export async function GET() {
     {
       status: 200,
       data: {
-        tickets: filteredTicketsData.sort((a, b) => a.updatedAt > b.updatedAt),
+        tickets: filteredTicketsData.sort((a, b) => b.updatedAt - a.updatedAt),
       },
     },
     { status: 200 },

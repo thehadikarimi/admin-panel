@@ -94,6 +94,9 @@ function HeaderSearchModal({ state, stateToggle }) {
                       key={item._id}
                       href={item.link}
                       className="px-3 py-2 hover:bg-neutral-500 dark:hover:bg-neutral-900"
+                      onClick={() =>
+                        item.link === pathname && stateToggle(false)
+                      }
                     >
                       {item.title}
                     </Link>

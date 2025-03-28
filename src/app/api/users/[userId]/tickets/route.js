@@ -49,7 +49,12 @@ export async function GET(request, { params }) {
   }));
 
   return Response.json(
-    { status: 200, data: { tickets: filteredTicketsData } },
+    {
+      status: 200,
+      data: {
+        tickets: filteredTicketsData.sort((a, b) => b.updatedAt - a.updatedAt),
+      },
+    },
     { status: 200 },
   );
 }
