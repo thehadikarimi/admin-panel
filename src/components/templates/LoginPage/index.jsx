@@ -11,7 +11,14 @@ function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="flex min-h-dvh w-full items-center justify-center py-8">
+    <div className="flex min-h-dvh w-full flex-col items-center justify-center gap-8 py-8">
+      <div className="container max-w-md">
+        <div className="z-50 mx-auto flex flex-col gap-2 rounded-xl bg-white p-4 text-sm shadow-md lg:text-base dark:bg-dark-500">
+          <p>شما می‌توانید با اطالاعات زیر وارد حساب کاربری شوید</p>
+          <p>ایمیل: admin@gmail.com | user@gmail.com</p>
+          <p>گذرواژه: 12345678</p>
+        </div>
+      </div>
       <div className="container max-w-screen-sm">
         <div className="w-full rounded-2xl bg-white p-5 shadow-md dark:bg-dark-500">
           <ul className="flex select-none items-center justify-around">

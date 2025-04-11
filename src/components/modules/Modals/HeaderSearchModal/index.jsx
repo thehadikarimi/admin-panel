@@ -50,7 +50,7 @@ function HeaderSearchModal({ state, stateToggle }) {
     <Modal
       state={state}
       stateToggle={stateToggle}
-      modalClassName="h-dvh rounded-none"
+      modalClassName="h-full max-h-dvh rounded-none"
     >
       <div className="border-neutral-500 p-3 lg:border-b dark:border-neutral-900">
         <div className="flex items-center gap-3 rounded-full bg-neutral-500 px-3 lg:!bg-transparent lg:p-0 dark:bg-neutral-900">

@@ -56,7 +56,7 @@ function Sidebar({ sidebarOpen, sidebarToggle }) {
     <div className="z-[3] border-neutral-500 lg:relative lg:border-l dark:border-neutral-700">
       <aside
         className={cn(
-          "absolute right-0 top-0 z-20 h-full w-64 bg-white px-5 shadow-md transition-[width,transform] duration-300 lg:static lg:translate-x-0 dark:bg-dark-500",
+          "absolute right-0 top-0 z-20 h-dvh w-64 bg-white px-5 shadow-md transition-[width,transform] duration-300 lg:static lg:translate-x-0 dark:bg-dark-500",
           collapse ? "lg:w-20" : "lg:w-64",
           sidebarOpen ? "translate-x-0" : "translate-x-full shadow-none",
         )}
