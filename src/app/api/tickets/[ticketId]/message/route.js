@@ -62,7 +62,7 @@ export async function POST(request, { params }) {
   let imageLink = "";
   if (image) {
     const buffer = Buffer.from(await image.arrayBuffer());
-    imageLink = await uploadToMega([image, buffer], "admin-panel");
+    imageLink = await uploadToMega([image, buffer], "users-hub");
   }
 
   const user = await User.findOne({ _id: ticket.userId });

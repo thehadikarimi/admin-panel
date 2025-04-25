@@ -128,7 +128,7 @@ export async function DELETE(request) {
   );
 
   await Ticket.deleteMany({ userId: user._id });
-  await deleteFromMega(filesName, "admin-panel");
+  await deleteFromMega(filesName, "users-hub");
 
   await User.deleteOne({ _id });
 

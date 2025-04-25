@@ -104,7 +104,7 @@ export async function DELETE(request) {
   const filesName = ticket.messages.map((message) => message.image.name);
 
   await Ticket.deleteOne({ _id });
-  await deleteFromMega(filesName, "admin-panel");
+  await deleteFromMega(filesName, "users-hub");
 
   return Response.json(
     {
@@ -155,7 +155,7 @@ export async function POST(request) {
   let imageLink = "";
   if (image) {
     const buffer = Buffer.from(await image.arrayBuffer());
-    imageLink = await uploadToMega([image, buffer], "admin-panel");
+    imageLink = await uploadToMega([image, buffer], "users-hub");
   }
 
   await Ticket.create({

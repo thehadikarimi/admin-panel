@@ -128,7 +128,7 @@ function Header() {
         </button>
         <div className="hidden items-center gap-16 md:flex">
           <div>
-            <Link href="/admin" className="flex items-center gap-3">
+            <Link href="/profile" className="flex items-center gap-3">
               <Image
                 className="size-10 dark:invert"
                 src="/nextjs.svg"
